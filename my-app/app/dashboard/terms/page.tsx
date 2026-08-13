@@ -209,6 +209,8 @@ export default function TermsAndConditionsPage() {
 
   return (
     <PageShell
+      panel="privacy-terms"
+      panelTab="terms"
       title="Terms & Conditions"
       subtitle="The agreement that governs your use of Fooder.AI."
     >

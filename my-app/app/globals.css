@@ -5,6 +5,10 @@
   --font-caveat: var(--font-caveat);
   --font-cormorant: var(--font-cormorant);
   --font-lora: var(--font-lora);
+  --font-display: var(--font-cormorant);
+  --font-hand: var(--font-caveat);
+  --font-script: var(--font-parisienne);
+  --font-body: var(--font-lora);
 }
 
 :root {
@@ -22,7 +26,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-lora);
 }
 
 html {
@@ -181,6 +185,88 @@ body {
   border-image: repeating-linear-gradient(45deg, rgba(200,139,66,0.3) 0px, rgba(200,139,66,0.1) 2px, transparent 2px, transparent 8px) 8;
 }
 
+/* ===== Scrapbook theme (shared across dashboard panels) ===== */
+@layer components {
+
+/* Warm cream paper backdrop used by modal panels */
+.scrapbook-panel {
+  background: linear-gradient(180deg, rgba(248,241,230,0.98) 0%, rgba(243,230,209,0.96) 100%);
+  background-color: #FDF9F0;
+}
+
+/* Script display title (matches "Good Food. Smart Choices. Better You.") */
+.scrapbook-title {
+  font-family: var(--font-parisienne);
+  color: #274D2F;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+}
+
+/* Handwritten accent (eyebrows, notes, stickers) */
+.scrapbook-eyebrow {
+  font-family: var(--font-caveat);
+  color: #B96A28;
+  font-weight: 600;
+}
+
+/* Hand-placed warm card for inline white boxes */
+.scrapbook-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.78) 0%, rgba(255,255,255,0.5) 100%);
+  border: 1px solid rgba(200,139,66,0.2);
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 30px rgba(46,43,40,0.1), 0 2px 8px rgba(46,43,40,0.05);
+}
+
+/* Warm cream form field */
+.scrapbook-input {
+  background-color: rgba(255,255,255,0.75);
+  border: 1px solid rgba(200,139,66,0.22);
+  border-radius: 1rem;
+  color: #2E2B28;
+}
+
+.scrapbook-input:focus {
+  border-color: rgba(185,106,40,0.45);
+  box-shadow: 0 0 0 3px rgba(185,106,40,0.15);
+  outline: none;
+}
+
+/* Soft rounded icon-in-circle (matches homepage feature row) */
+.scrapbook-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
+  background-color: rgba(39,77,47,0.08);
+  color: #274D2F;
+}
+
+/* Dashed golden underline for section titles */
+.scrapbook-underline {
+  height: 2px;
+  border-radius: 9999px;
+  background-image: repeating-linear-gradient(90deg, rgba(200,139,66,0.4) 0, rgba(200,139,66,0.4) 6px, transparent 6px, transparent 11px);
+}
+
+/* Decorative washi-tape strip */
+.scrapbook-tape {
+  background: linear-gradient(180deg, rgba(200,139,66,0.28), rgba(200,139,66,0.18));
+  border: 1px solid rgba(200,139,66,0.3);
+  box-shadow: 0 2px 6px rgba(46,43,40,0.12);
+}
+
+/* Dashed golden divider */
+.scrapbook-divider {
+  border: 0;
+  border-top: 2px dashed rgba(200,139,66,0.25);
+}
+
+} /* end @layer components */
+
 /* Brushstroke effect */
 .brushstroke {
   background: linear-gradient(135deg, #1e3f20 0%, #274D2F 40%, #355F39 100%);
@@ -221,7 +307,47 @@ body {
 }
 
 input::placeholder, select::placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(46, 43, 40, 0.38);
+}
+
+.grocery-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.grocery-scroll::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.05);
+}
+
+.grocery-scroll::-webkit-scrollbar-thumb {
+  background: #274D2F;
+  border-radius: 3px;
+}
+
+.grocery-scroll::-webkit-scrollbar-thumb:hover {
+  background: #1d3a25;
+}
+
+.scrap-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #A98A55 rgba(0,0,0,0.06);
+}
+
+.scrap-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrap-scroll::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.06);
+  border-radius: 3px;
+}
+
+.scrap-scroll::-webkit-scrollbar-thumb {
+  background: #A98A55;
+  border-radius: 3px;
+}
+
+.scrap-scroll::-webkit-scrollbar-thumb:hover {
+  background: #8A6A3A;
 }
 
 ::-webkit-scrollbar {

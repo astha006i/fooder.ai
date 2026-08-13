@@ -19,11 +19,28 @@ export function PaperCard({
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={`bg-white rounded-3xl border border-[#274D2F]/10 shadow-lg shadow-black/5 overflow-hidden ${className}`}
+      className={`scrapbook-card overflow-hidden ${className}`}
       {...props}
     >
       {children}
     </div>
+  );
+}
+
+/* --------------------------- Scrapbook Icon ------------------------------ */
+
+export function ScrapbookIcon({
+  icon: Icon,
+  className = "",
+  ...props
+}: {
+  icon: React.ElementType;
+  className?: string;
+} & React.HTMLAttributes<HTMLSpanElement>) {
+  return (
+    <span className={`scrapbook-icon ${className}`} {...props}>
+      <Icon className="w-5 h-5" />
+    </span>
   );
 }
 
@@ -45,10 +62,14 @@ export function SectionTitle({
         {title}
       </h2>
       {subtitle && (
-        <p className="text-sm mt-1" style={{ color: "#8B8178" }}>
+        <p
+          className="text-sm mt-1"
+          style={{ fontFamily: "var(--font-lora)", fontStyle: "italic", color: "#8A8580" }}
+        >
           {subtitle}
         </p>
       )}
+      <div className="scrapbook-underline mt-2 w-16" aria-hidden />
     </div>
   );
 }
@@ -97,11 +118,12 @@ export function Button({
   const base =
     "inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B96A28]/50 disabled:opacity-50 disabled:cursor-not-allowed";
   const variants: Record<string, string> = {
-    primary: "text-white shadow-md hover:shadow-lg hover:-translate-y-0.5",
-    secondary: "bg-white border border-[#274D2F]/15 hover:bg-[#274D2F]/5",
+    primary: "text-white shadow-md hover:shadow-lg hover:scale-[1.02]",
+    secondary:
+      "bg-white/70 border border-[#C88B42]/30 hover:bg-[#274D2F]/5 hover:scale-[1.02]",
     danger: "text-white bg-red-500 hover:bg-red-600 shadow-md hover:shadow-lg",
     golden:
-      "bg-gradient-to-r from-[#C88B42] to-[#B96A28] text-white shadow-md hover:shadow-lg hover:-translate-y-0.5",
+      "bg-gradient-to-r from-[#C88B42] to-[#B96A28] text-white shadow-md hover:shadow-lg hover:scale-[1.02]",
   };
   const styles: Record<string, React.CSSProperties> = {
     primary: { backgroundColor: FOREST },
@@ -131,7 +153,7 @@ export function Field({
     <label className="block">
       <span
         className="block mb-1.5 text-[11px] font-semibold uppercase tracking-wider"
-        style={{ color: GOLDEN }}
+        style={{ color: GOLDEN, fontFamily: "var(--font-lora)" }}
       >
         {label}
       </span>
@@ -149,7 +171,7 @@ export function TextInput(props: React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <input
       {...props}
-      className={`w-full bg-white border border-[#274D2F]/10 rounded-xl px-4 py-3 text-sm text-[#2E2B28] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#B96A28]/40 focus:border-transparent transition-all ${props.className ?? ""}`}
+      className={`w-full scrapbook-input px-4 py-3 text-sm placeholder-[#A89E90] transition-all ${props.className ?? ""}`}
     />
   );
 }
@@ -158,7 +180,7 @@ export function Select(props: React.SelectHTMLAttributes<HTMLSelectElement>) {
   return (
     <select
       {...props}
-      className={`w-full bg-white border border-[#274D2F]/10 rounded-xl px-4 py-3 text-sm text-[#2E2B28] focus:outline-none focus:ring-2 focus:ring-[#B96A28]/40 focus:border-transparent transition-all appearance-none ${props.className ?? ""}`}
+      className={`w-full scrapbook-input px-4 py-3 text-sm transition-all appearance-none ${props.className ?? ""}`}
     />
   );
 }
@@ -167,7 +189,7 @@ export function TextArea(props: React.TextareaHTMLAttributes<HTMLTextAreaElement
   return (
     <textarea
       {...props}
-      className={`w-full bg-white border border-[#274D2F]/10 rounded-xl px-4 py-3 text-sm text-[#2E2B28] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#B96A28]/40 focus:border-transparent transition-all resize-none ${props.className ?? ""}`}
+      className={`w-full scrapbook-input px-4 py-3 text-sm placeholder-[#A89E90] transition-all resize-none ${props.className ?? ""}`}
     />
   );
 }
@@ -193,7 +215,7 @@ export function Toggle({
     >
       <span
         className={`relative inline-flex w-11 h-6 rounded-full transition-colors duration-200 ${
-          checked ? "" : "bg-gray-200"
+          checked ? "" : "bg-[#E7DFCF]"
         }`}
         style={checked ? { backgroundColor: FOREST } : {}}
       >
@@ -314,7 +336,7 @@ export function EmptyState({
 export function Skeleton({ className = "" }: { className?: string }) {
   return (
     <div
-      className={`animate-pulse rounded-xl bg-gray-200/70 ${className}`}
+      className={`animate-pulse rounded-xl bg-[#E8DFCE]/80 ${className}`}
     />
   );
 }
@@ -337,7 +359,7 @@ export function PageSkeleton() {
 /* ------------------------------ Chip/Divider ------------------------------ */
 
 export function Divider({ className = "" }: { className?: string }) {
-  return <div className={`border-t border-[#274D2F]/10 ${className}`} />;
+  return <div className={`scrapbook-divider ${className}`} />;
 }
 
 export function Chip({
@@ -353,12 +375,12 @@ export function Chip({
     <button
       onClick={onClick}
       className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 border ${
-        active ? "text-white shadow-md" : "bg-white hover:bg-[#274D2F]/5"
+        active ? "text-white shadow-md" : "bg-white/70 hover:bg-[#274D2F]/5"
       }`}
       style={
         active
           ? { backgroundColor: FOREST, borderColor: FOREST }
-          : { color: DARK, borderColor: "rgba(39,77,47,0.15)" }
+          : { color: DARK, borderColor: "rgba(200,139,66,0.25)" }
       }
     >
       {children}

@@ -194,6 +194,7 @@ export default function FavoritesPage() {
 
   return (
     <PageShell
+      panel="favorite-recipes"
       title="Favorite Recipes"
       subtitle="Your saved recipes, ready to cook whenever you want."
     >

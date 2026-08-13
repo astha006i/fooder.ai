@@ -150,6 +150,7 @@ export default function NotificationsPage() {
 
   return (
     <PageShell
+      panel="notifications"
       title="Notifications"
       subtitle="All your Fooder.AI updates in one place."
     >
@@ -253,7 +254,7 @@ export default function NotificationsPage() {
                                   e.stopPropagation();
                                   markRead(item.id);
                                 }}
-                                className="text-[11px] font-bold uppercase tracking-wider border border-[#274D2F]/15 rounded-full px-3 py-1.5 hover:bg-[#274D2F]/5 transition-colors"
+                                className="text-[11px] font-bold uppercase tracking-wider border border-[#C88B42]/30 rounded-full px-3 py-1.5 hover:bg-[#274D2F]/5 transition-colors"
                                 style={{ color: FOREST }}
                               >
                                 Mark read

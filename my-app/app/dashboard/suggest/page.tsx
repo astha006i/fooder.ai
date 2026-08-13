@@ -86,7 +86,7 @@ export default function SuggestPage() {
   };
 
   return (
-    <PageShell title="Suggest a Feature" subtitle="Help shape the future of Fooder.AI">
+    <PageShell title="Suggest a Feature" subtitle="Help shape the future of Fooder.AI" panel="suggest-feature">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Submission form */}
         <PaperCard className="p-6 h-fit">

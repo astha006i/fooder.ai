@@ -245,6 +245,7 @@ function AchievementCard({ achievement }: { achievement: Achievement }) {
 export default function AchievementsPage() {
   return (
     <PageShell
+      panel="achievements"
       title="Achievements"
       subtitle="Track your cooking milestones and unlock rewards."
     >

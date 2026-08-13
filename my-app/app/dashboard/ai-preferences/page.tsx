@@ -187,6 +187,7 @@ export default function AIPreferencesPage() {
 
   return (
     <PageShell
+      panel="ai-preferences"
       title="AI Preferences"
       subtitle="Fine-tune how Fooder.AI plans your weekly meals."
     >
@@ -271,7 +272,7 @@ export default function AIPreferencesPage() {
                 value={calories}
                 onChange={(e) => setCalories(Number(e.target.value))}
                 aria-label="Daily calorie target value"
-                className="w-20 bg-white border border-[#274D2F]/10 rounded-xl px-3 py-2 text-sm text-[#2E2B28] focus:outline-none focus:ring-2 focus:ring-[#B96A28]/40 focus:border-transparent transition-all"
+                className="w-20 scrapbook-input px-3 py-2 text-sm text-[#2E2B28] focus:outline-none transition-all"
               />
               <span className="text-sm font-bold" style={{ color: ORANGE }}>
                 kcal

@@ -131,6 +131,7 @@ export default function DownloadsPage() {
 
   return (
     <PageShell
+      panel="download-history"
       title="Download History"
       subtitle="Files you've generated, ready to grab again whenever you need them"
     >
@@ -255,7 +256,7 @@ export default function DownloadsPage() {
                           {entry.size}
                         </span>
                         <div
-                          className="w-12 h-12 rounded-xl border border-[#274D2F]/10 flex items-center justify-center"
+                          className="w-12 h-12 rounded-xl border border-[#C88B42]/25 flex items-center justify-center"
                           style={{ backgroundColor: CREAM }}
                         >
                           <Icon

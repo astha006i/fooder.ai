@@ -83,7 +83,7 @@ function QRCode({ size, matrix }: { size: number; matrix: boolean[][] }) {
     <div
       role="img"
       aria-label="WhatsApp pairing QR code"
-      className="shrink-0 rounded-xl border-4 border-[#274D2F]/10 bg-white p-2 shadow-sm"
+      className="shrink-0 rounded-xl border-4 border-[#C88B42]/30 bg-[#FDF9F0] p-2 shadow-sm"
     >
       <div
         className="grid"
@@ -159,6 +159,7 @@ export default function WhatsAppPage() {
 
   return (
     <PageShell
+      panel="whatsapp-settings"
       title="WhatsApp Settings"
       subtitle="Manage how Fooder.AI stays in touch over WhatsApp."
     >
@@ -382,7 +383,7 @@ export default function WhatsAppPage() {
                 checked={prefs.recipeSharing}
                 onToggle={(v) => setPrefs((p) => ({ ...p, recipeSharing: v }))}
               />
-              <div className="border-t border-[#274D2F]/10" />
+              <div className="border-t border-[#C88B42]/25" />
               <PreferenceRow
                 icon={ShoppingCart}
                 title="Grocery notifications"
@@ -392,7 +393,7 @@ export default function WhatsAppPage() {
                   setPrefs((p) => ({ ...p, groceryNotifications: v }))
                 }
               />
-              <div className="border-t border-[#274D2F]/10" />
+              <div className="border-t border-[#C88B42]/25" />
               <PreferenceRow
                 icon={UtensilsCrossed}
                 title="Meal reminders"

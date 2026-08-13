@@ -118,6 +118,7 @@ export default function ProfilePage() {
 
   return (
     <PageShell
+      panel="profile"
       title="My Profile"
       subtitle="Manage your personal details and account preferences."
     >
@@ -140,7 +141,7 @@ export default function ProfilePage() {
                   <button
                     onClick={() => toast("Profile picture updated", "success")}
                     aria-label="Change profile picture"
-                    className="absolute -bottom-0.5 -right-0.5 w-8 h-8 rounded-full bg-white border border-[#274D2F]/10 shadow-md flex items-center justify-center hover:scale-105 active:scale-95 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B96A28]/50"
+                    className="absolute -bottom-0.5 -right-0.5 w-8 h-8 rounded-full bg-white border border-[#C88B42]/25 shadow-md flex items-center justify-center hover:scale-105 active:scale-95 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B96A28]/50"
                   >
                     <Camera className="w-4 h-4" style={{ color: ORANGE }} />
                   </button>
@@ -260,7 +261,7 @@ export default function ProfilePage() {
                 return (
                   <div
                     key={stat.label}
-                    className="rounded-2xl p-5 border border-[#274D2F]/10 bg-[#F8F1E6]/40"
+                    className="rounded-2xl p-5 border border-[#C88B42]/25 bg-[#F8F1E6]/50"
                   >
                     <div
                       className="w-10 h-10 rounded-full flex items-center justify-center mb-3"

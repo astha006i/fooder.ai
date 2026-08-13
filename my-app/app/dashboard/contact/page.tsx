@@ -54,7 +54,7 @@ export default function ContactPage() {
   };
 
   return (
-    <PageShell title="Contact Us" subtitle="We'd love to hear from you">
+    <PageShell title="Contact Us" subtitle="We'd love to hear from you" panel="contact-us">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Form */}
         <PaperCard className="p-6">
@@ -105,7 +105,7 @@ export default function ContactPage() {
                 <TextArea rows={5} value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Tell us how we can help..." />
               </Field>
               <Field label="Attachment (optional)">
-                <label className="flex items-center gap-3 bg-[#F8F1E6]/60 border border-[#274D2F]/10 rounded-xl px-4 py-3 cursor-pointer hover:bg-[#F8F1E6] transition-colors">
+                <label className="flex items-center gap-3 bg-white/70 border border-[#C88B42]/30 rounded-xl px-4 py-3 cursor-pointer hover:bg-[#F8F1E6] transition-colors">
                   <Paperclip className="w-4 h-4" style={{ color: ORANGE }} />
                   <span className="text-sm" style={{ color: fileName ? DARK : "#8B8178" }}>
                     {fileName ?? "Attach a file (max 10 MB)"}

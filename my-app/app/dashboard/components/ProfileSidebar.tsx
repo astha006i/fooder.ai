@@ -2,8 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import {
   User,
   Settings,
@@ -27,53 +25,51 @@ import {
   X,
 } from "lucide-react";
 import { FOREST, ORANGE, GOLDEN, CREAM } from "../lib/constants";
+import { useDashboardPanels } from "./DashboardPanelsContext";
 
 interface SidebarItem {
   icon: React.ElementType;
   label: string;
-  href: string;
+  panel: string;
+  tab?: string;
   badge?: string;
 }
 
 const ACCOUNT_ITEMS: SidebarItem[] = [
-  { icon: User, label: "My Profile", href: "/dashboard/profile" },
-  { icon: Settings, label: "AI Preferences", href: "/dashboard/ai-preferences" },
-  { icon: Bookmark, label: "Saved Meal Plans", href: "/dashboard/saved-meals" },
-  { icon: Heart, label: "Favorite Recipes", href: "/dashboard/favorites" },
-  { icon: ShoppingBag, label: "Order History", href: "/dashboard/orders" },
-  { icon: Download, label: "Download History", href: "/dashboard/downloads" },
-  { icon: MessageCircle, label: "WhatsApp Settings", href: "/dashboard/whatsapp" },
-  { icon: Bell, label: "Notifications", href: "/dashboard/notifications", badge: "3" },
-  { icon: Trophy, label: "Achievements", href: "/dashboard/achievements" },
+  { icon: User, label: "My Profile", panel: "profile" },
+  { icon: Settings, label: "AI Preferences", panel: "ai-preferences" },
+  { icon: Bookmark, label: "Saved Meal Plans", panel: "saved-meal-plans" },
+  { icon: Heart, label: "Favorite Recipes", panel: "favorite-recipes" },
+  { icon: ShoppingBag, label: "Order History", panel: "order-history" },
+  { icon: Download, label: "Download History", panel: "download-history" },
+  { icon: MessageCircle, label: "WhatsApp Settings", panel: "whatsapp-settings" },
+  { icon: Bell, label: "Notifications", panel: "notifications", badge: "3" },
+  { icon: Trophy, label: "Achievements", panel: "achievements" },
 ];
 
 const SUPPORT_ITEMS: SidebarItem[] = [
-  { icon: HelpCircle, label: "Help & Support", href: "/dashboard/help" },
-  { icon: Mail, label: "Contact Us", href: "/dashboard/contact" },
-  { icon: Lightbulb, label: "Suggest a Feature", href: "/dashboard/suggest" },
-  { icon: Shield, label: "Privacy Policy", href: "/dashboard/privacy" },
-  { icon: ScrollText, label: "Terms & Conditions", href: "/dashboard/terms" },
+  { icon: HelpCircle, label: "Help & Support", panel: "help-support" },
+  { icon: Mail, label: "Contact Us", panel: "contact-us" },
+  { icon: Lightbulb, label: "Suggest a Feature", panel: "suggest-feature" },
+  { icon: Shield, label: "Privacy Policy", panel: "privacy-terms", tab: "privacy" },
+  { icon: ScrollText, label: "Terms & Conditions", panel: "privacy-terms", tab: "terms" },
 ];
 
-function SidebarLink({ item, onNavigate }: { item: SidebarItem; onNavigate: () => void }) {
-  const pathname = usePathname();
-  const active = pathname === item.href;
+function SidebarLink({ item, onSelect }: { item: SidebarItem; onSelect: () => void }) {
   const Icon = item.icon;
   return (
-    <Link
-      href={item.href}
-      onClick={onNavigate}
-      className={`group flex items-center gap-3 w-full px-4 py-2.5 rounded-xl transition-all duration-200 hover:bg-[#274D2F]/5 hover:translate-x-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B96A28]/40 ${
-        active ? "bg-[#274D2F]/10" : ""
-      }`}
+    <button
+      type="button"
+      onClick={onSelect}
+      className="group flex items-center gap-3 w-full px-4 py-2.5 rounded-xl text-left transition-all duration-200 hover:bg-[#274D2F]/5 hover:translate-x-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B96A28]/40 cursor-pointer"
     >
       <Icon
         className="w-[18px] h-[18px] flex-shrink-0 transition-colors group-hover:text-[#274D2F]"
-        style={{ color: active ? FOREST : ORANGE }}
+        style={{ color: ORANGE }}
       />
       <span
         className="flex-1 text-left text-sm font-medium"
-        style={{ color: active ? FOREST : "#2E2B28", fontWeight: active ? 700 : 500 }}
+        style={{ color: "#2E2B28" }}
       >
         {item.label}
       </span>
@@ -82,19 +78,19 @@ function SidebarLink({ item, onNavigate }: { item: SidebarItem; onNavigate: () =
           {item.badge}
         </span>
       )}
-      <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0 transition-all group-hover:text-[#B96A28] group-hover:translate-x-0.5" />
-    </Link>
+      <ChevronRight className="w-4 h-4 text-[#C9BFA8] flex-shrink-0 transition-all group-hover:text-[#B96A28] group-hover:translate-x-0.5" />
+    </button>
   );
 }
 
 function SidebarSection({
   title,
   items,
-  onNavigate,
+  onSelect,
 }: {
   title: string;
   items: SidebarItem[];
-  onNavigate: () => void;
+  onSelect: (item: SidebarItem) => void;
 }) {
   return (
     <div className="px-4">
@@ -103,7 +99,7 @@ function SidebarSection({
       </p>
       <div className="space-y-0.5">
         {items.map((item) => (
-          <SidebarLink key={item.label} item={item} onNavigate={onNavigate} />
+          <SidebarLink key={item.label} item={item} onSelect={() => onSelect(item)} />
         ))}
       </div>
     </div>
@@ -119,6 +115,12 @@ interface ProfileSidebarProps {
 export default function ProfileSidebar({ isOpen, onClose, onLogout }: ProfileSidebarProps) {
   const panelRef = useRef<HTMLDivElement | null>(null);
   const [confirmLogout, setConfirmLogout] = useState(false);
+  const { openPanel } = useDashboardPanels();
+
+  const openItem = (item: SidebarItem) => {
+    openPanel(item.panel, item.tab);
+    onClose();
+  };
 
   useEffect(() => {
     if (!isOpen) return;
@@ -191,7 +193,7 @@ export default function ProfileSidebar({ isOpen, onClose, onLogout }: ProfileSid
             style={{ backgroundColor: CREAM, fontFamily: "var(--font-lora)" }}
           >
             {/* Header */}
-            <div className="px-6 pt-8 pb-6 border-b border-[#274D2F]/10">
+            <div className="px-6 pt-8 pb-6 border-b border-[#C88B42]/25">
               <div className="flex items-center gap-4">
                 <div className="relative flex-shrink-0">
                   <div
@@ -227,33 +229,33 @@ export default function ProfileSidebar({ isOpen, onClose, onLogout }: ProfileSid
                 </button>
               </div>
 
-              <Link
-                href="/dashboard/profile"
-                onClick={onClose}
-                className="mt-5 w-full flex items-center gap-2 px-4 py-3 rounded-xl bg-white border transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
+              <button
+                type="button"
+                onClick={() => openItem({ icon: Pencil, label: "Edit Profile", panel: "profile" })}
+                className="mt-5 w-full flex items-center gap-2 px-4 py-3 rounded-xl bg-white/60 border transition-all duration-200 hover:shadow-md hover:-translate-y-0.5 cursor-pointer"
                 style={{ borderColor: "rgba(200,139,66,0.25)" }}
               >
                 <Pencil className="w-4 h-4 text-[#B96A28] flex-shrink-0" />
                 <span className="flex-1 text-left text-sm font-semibold" style={{ color: FOREST }}>
                   Edit Profile
                 </span>
-                <ChevronRight className="w-4 h-4 text-gray-300" />
-              </Link>
+                <ChevronRight className="w-4 h-4 text-[#C9BFA8]" />
+              </button>
             </div>
 
             {/* Scrollable Menu */}
             <div className="flex-1 overflow-y-auto py-6 space-y-8">
-              <SidebarSection title="My Account" items={ACCOUNT_ITEMS} onNavigate={onClose} />
-              <div className="mx-6 border-t border-[#274D2F]/10" />
-              <SidebarSection title="Support" items={SUPPORT_ITEMS} onNavigate={onClose} />
+              <SidebarSection title="My Account" items={ACCOUNT_ITEMS} onSelect={openItem} />
+              <div className="mx-6 border-t border-[#C88B42]/25" />
+              <SidebarSection title="Support" items={SUPPORT_ITEMS} onSelect={openItem} />
             </div>
 
             {/* Bottom: Upgrade + Logout */}
-            <div className="px-6 pb-6 pt-4 border-t border-[#274D2F]/10 space-y-3">
-              <Link
-                href="/dashboard/upgrade"
-                onClick={onClose}
-                className="group w-full flex items-center gap-3 px-4 py-4 rounded-2xl bg-gradient-to-r from-yellow-200 via-amber-100 to-yellow-200 border border-yellow-300/60 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B96A28]/40"
+            <div className="px-6 pb-6 pt-4 border-t border-[#C88B42]/25 space-y-3">
+              <button
+                type="button"
+                onClick={() => openItem({ icon: Crown, label: "Upgrade to Fooder.AI Pro", panel: "upgrade" })}
+                className="group w-full flex items-center gap-3 px-4 py-4 rounded-2xl bg-gradient-to-r from-yellow-200 via-amber-100 to-yellow-200 border border-yellow-300/60 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B96A28]/40 cursor-pointer"
               >
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 shadow-inner"
@@ -270,7 +272,7 @@ export default function ProfileSidebar({ isOpen, onClose, onLogout }: ProfileSid
                   </p>
                 </div>
                 <ChevronRight className="w-4 h-4 text-[#B96A28] transition-transform group-hover:translate-x-0.5" />
-              </Link>
+              </button>
 
               <button
                 onClick={() => setConfirmLogout(true)}
@@ -320,7 +322,7 @@ export default function ProfileSidebar({ isOpen, onClose, onLogout }: ProfileSid
                 <div className="flex gap-3 mt-6">
                   <button
                     onClick={() => setConfirmLogout(false)}
-                    className="flex-1 px-4 py-2.5 rounded-full text-sm font-semibold bg-white border border-[#274D2F]/15 text-[#274D2F] hover:bg-[#274D2F]/5 transition-all"
+                    className="flex-1 px-4 py-2.5 rounded-full text-sm font-semibold bg-white/70 border border-[#C88B42]/30 text-[#274D2F] hover:bg-[#274D2F]/5 transition-all"
                   >
                     Cancel
                   </button>

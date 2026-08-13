@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
+import AuthModal from "./components/AuthModal";
 import {
   Mail, Lock, Eye, EyeOff, ArrowUpRight, Search, ShoppingCart,
   Clock, Heart, Smartphone, BarChart3, ClipboardList, Utensils, Leaf,
@@ -136,6 +137,9 @@ export default function HomePage() {
   const router = useRouter();
   const [mobileNav, setMobileNav] = useState(false);
   const [activeNav, setActiveNav] = useState("Home");
+  const [isSignupOpen, setIsSignupOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const closeAuth = () => { setIsSignupOpen(false); setIsLoginOpen(false); };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -151,7 +155,9 @@ export default function HomePage() {
           <header id="top" className="sticky top-0 z-50 py-4">
             <nav className="flex items-center justify-between rounded-2xl px-4 sm:px-6 py-3" style={{ backgroundColor: "rgba(233, 210, 171, 0.85)", backdropFilter: "blur(12px)", border: "1px solid rgba(200,139,66,0.15)" }}>
               <div className="flex items-center gap-2">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl" style={{ backgroundColor: FOREST }}><ChefHat className="h-5 w-5 text-white" /></div>
+                <div className="h-19 w-19 object-contain drop-shadow-lg">
+                  <img src="/fooder_ai_png_assets_transparent_updated (2)/logo.png" alt="Fooder.AI" className="h-full w-full object-contain drop-shadow-lg" />
+                </div>
                 <div>
                   <span className="font-bold text-lg tracking-tight" style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}>Fooder</span>
                   <span className="font-bold text-lg" style={{ fontFamily: "var(--font-cormorant)", color: ORANGE }}>.AI</span>
@@ -160,23 +166,23 @@ export default function HomePage() {
               </div>
               <nav className="hidden lg:flex items-center gap-1">
                 {NAV_LINKS.map((link) => (
-                  <a key={link.label} href={link.href} onClick={() => setActiveNav(link.label)} className="relative px-4 py-2 text-sm font-medium rounded-lg transition-colors" style={{ fontFamily: "var(--font-lora)", color: activeNav === link.label ? FOREST : DARK }}>
+                  <a key={link.label} href={link.href} onClick={() => setActiveNav(link.label)} className="relative px-4 py-2 text-lg rounded-lg transition-colors" style={{ fontFamily: "var(--font-caveat)", color: activeNav === link.label ? FOREST : DARK }}>
                     {link.label}
-                    {activeNav === link.label && <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full" style={{ backgroundColor: ORANGE }} />}
+                    {activeNav === link.label && <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 rounded-full" style={{ backgroundColor: ORANGE }} />}
                   </a>
                 ))}
               </nav>
               <div className="flex items-center gap-3">
-                <Link href="/login" className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white transition-all hover:scale-105 hover:shadow-lg" style={{ backgroundColor: FOREST, fontFamily: "var(--font-lora)" }}>Log In / Sign Up</Link>
+                <button type="button" onClick={() => setIsLoginOpen(true)} className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white transition-all hover:scale-105 hover:shadow-lg" style={{ backgroundColor: FOREST, fontFamily: "var(--font-lora)" }}>Log In / Sign In</button>
                 <button onClick={() => setMobileNav(!mobileNav)} className="lg:hidden p-2 rounded-lg" style={{ color: FOREST }}>{mobileNav ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}</button>
               </div>
             </nav>
             {mobileNav && (
               <div className="lg:hidden mt-2 rounded-2xl p-4 space-y-1" style={{ backgroundColor: "rgba(225, 206, 174, 0.95)", backdropFilter: "blur(12px)", border: "1px solid rgba(200,139,66,0.15)" }}>
                 {NAV_LINKS.map((link) => (
-                  <a key={link.label} href={link.href} onClick={() => { setActiveNav(link.label); setMobileNav(false); }} className="block px-4 py-2.5 rounded-lg text-sm font-medium" style={{ fontFamily: "var(--font-lora)", color: activeNav === link.label ? FOREST : DARK }}>{link.label}</a>
+                  <a key={link.label} href={link.href} onClick={() => { setActiveNav(link.label); setMobileNav(false); }} className="block px-4 py-2.5 rounded-lg text-base" style={{ fontFamily: "var(--font-caveat)", color: activeNav === link.label ? FOREST : DARK }}>{link.label}</a>
                 ))}
-                <Link href="/login" className="block text-center px-4 py-2.5 rounded-full text-sm font-semibold text-white" style={{ backgroundColor: FOREST }}>Log In / Sign Up</Link>
+                <button type="button" onClick={() => { setMobileNav(false); setIsLoginOpen(true); }} className="block text-center px-4 py-2.5 rounded-full text-sm font-semibold text-white" style={{ backgroundColor: FOREST }}>Log In / Sign Up</button>
               </div>
             )}
           </header>
@@ -184,52 +190,52 @@ export default function HomePage() {
 
         {/* ========== HERO SECTION ========== */}
         <section className="relative overflow-hidden" style={{ minHeight: "90vh", paddingBottom: "0px" }}>
-          <img src={IMG("leaf_01")} alt="" className="absolute pointer-events-none z-[60] hidden lg:block animate-sway" style={{ width: "220px", left: "3%", top: "10%", opacity: 0.12 }} />
-          <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 lg:pt-16">
-            <div className="relative flex flex-col lg:flex-row gap-12 lg:gap-8">
+          <img src="/food/login_transparent_images/kitchen.png" alt="" className="absolute pointer-events-none z-[60] hidden lg:block" style={{ width: "476px", right: "68%", top: "-90px", opacity: 1 }} />
+          <div className="relative ml-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 lg:mr-12 pt-12 lg:pt-16">
+            <div className="relative flex flex-col lg:flex-row gap-12 lg:gap-10">
               {/* ── LEFT COLUMN ── */}
-              <div className="relative lg:w-[55%] flex-shrink-0">
-                <div className="relative z-[3] flex flex-col gap-6 pr-4">
-                  <AnimDiv>
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-0" style={{ backgroundColor: "rgba(221, 203, 188, 0.1)", border: "1px dashed rgba(185,106,40,0.3)" }}>
-                      <ChefHat className="h-4 w-4" style={{ color: ORANGE }} />
-                      <span style={{ fontFamily: "var(--font-caveat)", color: ORANGE, fontSize: "1.1rem" }}>Votre Chef.</span>
-                    </div>
-                  </AnimDiv>
-
-                  <AnimDiv delay={0.1} className="relative">
-                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-[-0.06em]" style={{ fontFamily: "var(--font-cormorant)" }}>
-                      <span style={{ color: FOREST }}>SMARTER MEALS,</span><br /><span style={{ color: ORANGE }}>BETTER YOU.</span>
-                    </h1>
-                  </AnimDiv>
-
-                  <AnimDiv delay={0.2}>
-                    <p className="text-sm sm:text-base italic leading-relaxed w-full" style={{ fontFamily: "var(--font-lora)", color: "#5A5550" }}>
-                      <span> Fooder.AI helps you create healthy, budget-friendly meals in minutes using</span><br />
-                      ingredients already available in your fridge.
-                    </p>
-                  </AnimDiv>
-
-                  <AnimDiv delay={0.3}>
-                    <div className="flex flex-wrap gap-6">
-                      {[{ icon: Leaf, label: "Eat Better", sub: "Balanced nutrition" }, { icon: TrendingDown, label: "Save Money", sub: "Smart grocery prices" }, { icon: Heart, label: "Live Healthier", sub: "Track your goals" }].map((item) => (
+              <div className="relative lg:w-[55%] flex-shrink-0 ">
+                <div className="relative z-[70] flex flex-col gap-7 pr-4">
+                  
+                   <AnimDiv delay={0.1}>
+                    <div className="flex flex-wrap gap-5 justify-center">
+                      {[{ icon: TrendingDown, label: "Save Money", sub: "Smart grocery prices" }, { icon: Heart, label: "Live Healthier", sub: "Track your goals" }, { icon: Leaf, label: "Eat Better", sub: "Balanced nutrition" }].map((item) => (
                         <div key={item.label} className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "rgba(39,77,47,0.08)" }}><item.icon className="h-5 w-5" style={{ color: FOREST }} /></div>
-                          <div><div className="text-sm font-bold" style={{ fontFamily: "var(--font-lora)", color: DARK }}>{item.label}</div><div className="text-xs" style={{ fontFamily: "var(--font-lora)", color: "#8A8580" }}>{item.sub}</div></div>
+                          <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "rgba(0, 255, 55, 0.08)" }}><item.icon className="h-5 w-5" style={{ color: FOREST }} /></div>
+                          <div><div className="text-lg font-bold" style={{ fontFamily: "var(--font-caveat)", color: DARK }}>{item.label}</div><div className="text-sm" style={{ fontFamily: "var(--font-caveat)", color: "#8A8580" }}>{item.sub}</div></div>
                         </div>
                       ))}
                     </div>
                   </AnimDiv>
 
+                  <AnimDiv delay={0.2} className="relative">
+                     <div className="mx-auto text-center" style={{ maxWidth: "490px" }}>
+                        <h1 className="text-8xl lg:text-5xl leading-tight" style={{ fontFamily: "Algerian, 'Times New Roman', serif", lineHeight: "1" }}>
+                          <span style={{ color: FOREST }}>Good Choices.</span><br />
+                          <span style={{ color: ORANGE }}>Smarter Meals.</span><br />
+                          <span style={{ color: FOREST }}>Better You.</span>
+                      </h1>
+                    </div>
+                  </AnimDiv>
+
+                  <AnimDiv delay={0.3}>
+                    <p className="mx-auto text-center italic text-sm" style={{ fontFamily: "var(--font-lora)", color: "#5A5550" }}>
+                      <span> Fooder.AI helps you create healthy, budget-friendly</span><br />
+                      <span>   meals in minutes using ingredients  </span><br/>
+                       already available in your fridge.
+                    </p>
+                  </AnimDiv>
+
+                 
+
                   <AnimDiv delay={0.4}>
-                    <div className="flex flex-col gap-2 pt-2">
-                      <div className="flex flex-wrap items-center gap-3">
-                        <Link href="/login" className="inline-flex items-center justify-center gap-2 px-1 py-2 rounded-full text-[10px] font-semibold text-white transition-all hover:scale-105 hover:shadow-lg flex-1 min-w-[50px]" style={{ backgroundColor: FOREST, fontFamily: "var(--font-lora)" }}>Get Started</Link>
-                        <Link href="/login" className="inline-flex items-center justify-center gap-2 px-1 py-2 rounded-full text-[10px] font-semibold transition-all hover:scale-105 flex-1 min-w-[50px]" style={{ backgroundColor: "rgba(177, 159, 109, 0.7)", border: "1px solid rgba(200,139,66,0.15)", color: FOREST, fontFamily: "var(--font-lora)" }}>Log In</Link>
+                    <div className="flex flex-col gap-2 pt-1">
+                      
+                      <div className="flex flex-wrap items-center justify-center gap-2">
+                        <button type="button" onClick={() => setIsSignupOpen(true)} className="inline-flex items-center justify-center w-fit px-16 rounded-full py-2.5 text-white font-semibold text-xs shadow-md transition-all hover:shadow-lg hover:scale-[1.02]" style={{ backgroundColor: FOREST, fontFamily: "var(--font-lora)" }}>Get Started</button>
                       </div>
-                      <div className="flex items-center gap-1">
+                      <div className="mx-auto text-center">
                         <span className="text-sm italic animate-sway" style={{ fontFamily: "var(--font-caveat)", color: GOLDEN }}>It&apos;s free &amp; takes less than a minute!</span>
-                        <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" style={{ color: GOLDEN, transform: "rotate(180deg)" }}><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                       </div>
                     </div>
                   </AnimDiv>
@@ -237,19 +243,18 @@ export default function HomePage() {
               </div>
 
               {/* ── RIGHT COLUMN ── */}
-              <div className="relative lg:w-[45%] flex-shrink-0 flex items-start justify-center">
-                <img src="/food/login_transparent_images/goodchoices.png" alt="" className="absolute pointer-events-none hidden lg:block z-[10] animate-sway" style={{ width: "190px", right: "60px", top: "-100px", opacity: 1 }} />
-                <img src={IMG("large_salad_bowl")} alt="" className="absolute pointer-events-none hidden lg:block z-[2]" style={{ width: "190px", left: "-112px", top: "-5px", opacity: 1 }} />
-                <img src={IMG("tea")} alt="" className="absolute pointer-events-none hidden lg:block z-30" style={{ width: "290px", right: "-150px", bottom: "-120px", opacity: 1 }} />
-                <img src={IMG("eiffel_tower")} alt="" className="absolute pointer-events-none hidden lg:block z-[6]" style={{ width: "290px", right: "-75px", bottom: "-10px", opacity: 1 }} />
-                <img src={IMG("croissant")} alt="" className="absolute pointer-events-none hidden lg:block z-[30]" style={{ width: "170px", right: "-100px", bottom: "160px", opacity: 1 }} />
+              <div className="relative lg:w-[45%] flex-shrink-0 flex items-start justify-center lg:ml-[-51px]">
+                <img src="/food/login_transparent_images/goodchoices.png" alt="" className="absolute pointer-events-none hidden lg:block z-[10] animate-sway" style={{ width: "140px", right: "60px", top: "-90px", opacity: 1 }} />
+                <img src={IMG("avocado")} alt="" className="absolute pointer-events-none hidden lg:block z-[87]" style={{ width: "230px", left: "-170px", top: "290px", opacity: 1 }} />
+                <img src={IMG("garlic")} alt="" className="absolute pointer-events-none hidden lg:block z-[85] " style={{ width: "240px", left: "-80px", top: "70px", opacity: 1 }} />
+                <img src="/food/login_transparent_images/tea2.png" alt="" className="absolute pointer-events-none hidden lg:block z-30" style={{ width: "290px", right: "-90px", bottom: "-62px", opacity: 1 }} />
+                <img src={IMG("eiffel_tower")} alt="" className="absolute pointer-events-none hidden lg:block z-[6]" style={{ width: "260px", right: "-75px", bottom: "-10px", opacity: 1 }} />
 
                 {/* Login card */}
                 <AnimDiv delay={0.3} className="relative z-[5] w-full max-w-[390px]">
                   <div className="rounded-[20px] px-8 py-10" style={{ backgroundColor: "#ecdcc4", boxShadow: "0 10px 30px rgba(0,0,0,0.08)" }}>
                     <div className="text-center mb-4">
-                      <div className="w-10 h-10 rounded-xl flex items-center justify-center mx-auto mb-2" style={{ backgroundColor: "rgba(39,77,47,0.1)" }}><ChefHat className="h-5 w-5" style={{ color: FOREST }} /></div>
-                      <h2 className="text-[2.5rem] font-bold" style={{ fontFamily: "var(--font-caveat)", color: DARK }}>Bienvenue!</h2>
+                      <h2 className="text-[2.5rem] font-bold" style={{ fontFamily: "var(--font-caveat)", color: DARK }}>Welcome Back!</h2>
                       <p className="text-xs mt-0.5" style={{ fontFamily: "var(--font-lora)", color: "#434b3a" }}>Let&apos;s continue your delicious journey.</p>
                     </div>
 
@@ -285,7 +290,7 @@ export default function HomePage() {
                       </button>
                       <button type="button" className="flex items-center justify-center rounded-xl py-2.5 transition-all hover:scale-105" style={{ backgroundColor: "rgba(255,255,255,0.7)", border: "1px solid rgba(200,139,66,0.15)" }}><Mail className="h-4 w-4" style={{ color: DARK }} /></button>
                     </div>
-                    <p className="mt-4 text-center text-[10px]" style={{ fontFamily: "var(--font-lora)", color: "#B0AAA3" }}>New here? <Link href="/login" className="font-semibold hover:underline" style={{ color: FOREST }}>Sign up</Link></p>
+                    <p className="mt-4 text-center text-[10px]" style={{ fontFamily: "var(--font-lora)", color: "#B0AAA3" }}>New here? <button type="button" onClick={() => setIsSignupOpen(true)} className="font-semibold hover:underline" style={{ color: FOREST }}>Sign up</button></p>
                   </div>
                 </AnimDiv>
               </div>
@@ -295,9 +300,8 @@ export default function HomePage() {
 
         {/* ========== STATS SECTION ========== */}
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <AnimDiv className="mb-20 relative">
-            <img src={IMG("tomato")} alt="" className="absolute pointer-events-none hidden lg:block z-30 animate-sway" style={{ width: "270px", left: "-100px", top: "-70px", opacity: 1 }} />
-            <img src={IMG("chair")} alt="" className="absolute pointer-events-none hidden lg:block z-30" style={{ width: "170px", left: "-120px", top: "-475px", opacity: 1 }} />
+          <AnimDiv className="mb-20 relative z-[80]">
+            <img src={IMG("tomato")} alt="" className="absolute pointer-events-none hidden lg:block z-70 animate-sway" style={{ width: "270px", left: "-100px", top: "-46px", opacity: 1 }} />
             <div className="rounded-3xl p-6 sm:p-8" style={{ backgroundColor: BEIGE, border: "1px solid rgba(200,139,66,0.15)" }}>
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
                 {STATS.map((stat) => (
@@ -442,7 +446,7 @@ export default function HomePage() {
               <div className="relative z-10">
                 <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3" style={{ fontFamily: "var(--font-caveat)", fontSize: "2.5rem" }}>Ready to eat smarter?</h2>
                 <p className="text-sm sm:text-base mb-8" style={{ fontFamily: "var(--font-lora)", color: "rgba(255,255,255,0.8)" }}>Healthy meals. Best prices. Zero stress.</p>
-                <Link href="/login" className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-bold shadow-xl transition-all hover:scale-105 hover:shadow-2xl" style={{ backgroundColor: ORANGE, fontFamily: "var(--font-lora)" }}>Get Started Now <ArrowUpRight className="h-5 w-5" /></Link>
+                <button type="button" onClick={() => setIsSignupOpen(true)} className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-bold shadow-xl transition-all hover:scale-105 hover:shadow-2xl" style={{ backgroundColor: ORANGE, fontFamily: "var(--font-lora)" }}>Get Started Now <ArrowUpRight className="h-5 w-5" /></button>
               </div>
               <div className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-10" style={{ background: "radial-gradient(circle, white, transparent)", transform: "translate(30%, -30%)" }} />
               <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full opacity-10" style={{ background: "radial-gradient(circle, white, transparent)", transform: "translate(-30%, 30%)" }} />
@@ -453,7 +457,9 @@ export default function HomePage() {
           <footer className="pb-8">
             <div className="rounded-3xl px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4" style={{ backgroundColor: "rgba(255,255,255,0.4)", border: "1px solid rgba(200,139,66,0.1)" }}>
               <div className="flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg" style={{ backgroundColor: FOREST }}><ChefHat className="h-4 w-4 text-white" /></div>
+                <div className="h-12 w-12">
+                  <img src="/fooder_ai_png_assets_transparent_updated (2)/logo.png" alt="Fooder.AI" className="h-full w-full object-contain drop-shadow-lg" />
+                </div>
                 <span className="font-bold" style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}>Fooder.AI</span>
               </div>
               <p className="text-xs" style={{ fontFamily: "var(--font-lora)", color: "#B0AAA3" }}>&copy; 2024 Fooder.AI. All rights reserved.</p>
@@ -466,6 +472,7 @@ export default function HomePage() {
           </footer>
         </div>
       </div>
+      <AuthModal open={isSignupOpen || isLoginOpen} initialView={isSignupOpen ? "signup" : "login"} onClose={closeAuth} />
     </div>
   );
 }

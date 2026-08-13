@@ -205,6 +205,7 @@ export default function UpgradePage() {
 
   return (
     <PageShell
+      panel="upgrade"
       title="Upgrade to Fooder.AI Pro"
       subtitle="Choose the plan that fits your kitchen"
     >
@@ -226,7 +227,7 @@ export default function UpgradePage() {
             >
               Billing
             </span>
-            <div className="inline-flex items-center gap-1 p-1 rounded-full border border-[#274D2F]/10 bg-white shadow-sm">
+            <div className="inline-flex items-center gap-1 p-1 rounded-full border border-[#C88B42]/30 bg-white/70 shadow-sm">
               <Chip active={!yearly} onClick={() => setYearly(false)}>
                 Monthly
               </Chip>
@@ -391,7 +392,7 @@ export default function UpgradePage() {
               </thead>
               <tbody>
                 {COMPARISON.map((row) => (
-                  <tr key={row.label} className="border-t border-[#274D2F]/10">
+                  <tr key={row.label} className="border-t border-[#C88B42]/25">
                     <td
                       className="px-5 py-3 text-xs font-medium"
                       style={{ color: "#3A3430" }}
@@ -468,7 +469,7 @@ export default function UpgradePage() {
             {FAQS.map((faq, i) => (
               <div
                 key={faq.q}
-                className="border-b border-[#274D2F]/10 last:border-0"
+                className="border-b border-[#C88B42]/25 last:border-0"
               >
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}

@@ -72,7 +72,7 @@ export default function HelpPage() {
   };
 
   return (
-    <PageShell title="Help & Support" subtitle="Search guides, browse FAQs, or reach our team">
+    <PageShell title="Help & Support" subtitle="Search guides, browse FAQs, or reach our team" panel="help-support">
       <div className="space-y-8">
         {/* Search */}
         <PaperCard className="p-5">
@@ -82,7 +82,7 @@ export default function HelpPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search help articles and FAQs..."
-              className="w-full bg-[#F8F1E6]/60 border border-[#274D2F]/10 rounded-full pl-11 pr-4 py-3 text-sm text-[#2E2B28] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#B96A28]/40 transition-all"
+              className="w-full bg-white/70 border border-[#C88B42]/30 rounded-full pl-11 pr-4 py-3 text-sm text-[#2E2B28] placeholder-[#A89E90] focus:outline-none focus:ring-2 focus:ring-[#B96A28]/40 transition-all"
             />
           </div>
         </PaperCard>
@@ -232,7 +232,7 @@ export default function HelpPage() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.3 }}
-          className="fixed bottom-6 right-6 z-50 w-80 bg-white rounded-3xl shadow-2xl border border-[#274D2F]/10 overflow-hidden"
+          className="fixed bottom-6 right-6 z-50 w-80 bg-white rounded-3xl shadow-2xl border border-[#C88B42]/30 overflow-hidden"
         >
           <div className="flex items-center gap-2 px-4 py-3" style={{ backgroundColor: FOREST }}>
             <MessageCircle className="w-4 h-4 text-white" />
@@ -246,7 +246,7 @@ export default function HelpPage() {
               <div key={i} className={`flex ${m.from === "me" ? "justify-end" : "justify-start"}`}>
                 <div
                   className={`max-w-[80%] px-3 py-2 rounded-2xl text-xs ${
-                    m.from === "me" ? "rounded-br-sm text-white" : "bg-white border border-[#274D2F]/10"
+                    m.from === "me" ? "rounded-br-sm text-white" : "bg-white border border-[#C88B42]/30"
                   }`}
                   style={m.from === "me" ? { backgroundColor: FOREST } : { color: DARK }}
                 >
@@ -255,13 +255,13 @@ export default function HelpPage() {
               </div>
             ))}
           </div>
-          <div className="flex items-center gap-2 p-3 border-t border-[#274D2F]/10">
+          <div className="flex items-center gap-2 p-3 border-t border-[#C88B42]/25">
             <input
               value={draft}
               onChange={(e) => setDraft(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && sendMessage()}
               placeholder="Type a message..."
-              className="flex-1 bg-[#F8F1E6]/60 border border-[#274D2F]/10 rounded-full px-4 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-[#B96A28]/40"
+              className="flex-1 bg-white/70 border border-[#C88B42]/30 rounded-full px-4 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-[#B96A28]/40"
             />
             <button
               onClick={sendMessage}

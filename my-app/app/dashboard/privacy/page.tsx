@@ -191,6 +191,7 @@ export default function PrivacyPolicyPage() {
 
   return (
     <PageShell
+      panel="privacy-terms"
       title="Privacy Policy"
       subtitle="How Fooder.AI collects, uses, and protects your information."
     >

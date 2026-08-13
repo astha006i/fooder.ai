@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -14,9 +14,10 @@ import {
   Sparkles,
   X,
 } from "lucide-react";
-import { WOOD_BG, FOOD_IMG, FOREST } from "../lib/constants";
+import { WOOD_BG, FOOD_IMG } from "../lib/constants";
 import ProfileSidebar from "./ProfileSidebar";
 import { ToastProvider } from "./ui";
+import { useDashboardPanels } from "./DashboardPanelsContext";
 
 const NAV_TABS = [
   { label: "Preference", icon: Settings },
@@ -28,17 +29,9 @@ const NAV_TABS = [
 export function PageHeader({ title, subtitle }: { title: string; subtitle?: string }) {
   return (
     <div className="mb-6">
-      <h1
-        className="text-3xl md:text-4xl font-bold tracking-tight"
-        style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}
-      >
-        {title}
-      </h1>
-      {subtitle && (
-        <p className="text-sm mt-1" style={{ color: "#8B8178" }}>
-          {subtitle}
-        </p>
-      )}
+      <h1 className="scrapbook-title text-3xl md:text-4xl">{title}</h1>
+      {subtitle && <p className="scrapbook-eyebrow text-lg md:text-xl mt-1.5">{subtitle}</p>}
+      <div className="scrapbook-underline mt-3 w-20" aria-hidden />
     </div>
   );
 }
@@ -46,12 +39,49 @@ export function PageHeader({ title, subtitle }: { title: string; subtitle?: stri
 interface PageShellProps {
   title: string;
   subtitle?: string;
+  panel?: string;
+  panelTab?: string;
   children: React.ReactNode;
 }
 
-export default function PageShell({ title, subtitle, children }: PageShellProps) {
+export default function PageShell({ title, subtitle, panel, panelTab, children }: PageShellProps) {
   const router = useRouter();
+  const { isModal, closePanel } = useDashboardPanels();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isModal && panel) {
+      const url = panelTab
+        ? `/dashboard?panel=${panel}&tab=${panelTab}`
+        : `/dashboard?panel=${panel}`;
+      router.replace(url);
+    }
+  }, [isModal, panel, panelTab, router]);
+
+  if (!isModal && panel) return null;
+
+  if (isModal) {
+    return (
+      <>
+        <div className="px-6 sm:px-10 pt-8 pb-4 border-b border-[rgba(200,139,66,0.25)] shrink-0 flex items-start gap-4">
+          <div className="flex-1 min-w-0">
+            <PageHeader title={title} subtitle={subtitle} />
+          </div>
+          <button
+            onClick={closePanel}
+            aria-label="Close panel"
+            title="Close"
+            className="w-10 h-10 rounded-full bg-[#C88B42]/10 border border-[#C88B42]/25 flex items-center justify-center shrink-0 transition-all duration-200 hover:rotate-90 hover:bg-[#B96A28]/10 hover:border-[#B96A28]/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B96A28]/50"
+          >
+            <X className="w-5 h-5" style={{ color: "#2E2B28" }} />
+          </button>
+        </div>
+        <div className="flex-1 overflow-y-auto px-6 sm:px-10 py-6">
+          {children}
+        </div>
+      </>
+    );
+  }
 
   const handleLogout = () => router.push("/");
 
@@ -64,21 +94,18 @@ export default function PageShell({ title, subtitle, children }: PageShellProps)
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          fontFamily: "'Inter', sans-serif",
+          fontFamily: "var(--font-lora)",
         }}
       >
         {/* Dark overlay */}
-        <div className="absolute inset-0 z-[1] bg-black/40" />
+        <div className="absolute inset-0 z-[1] bg-black/10" />
 
-        {/* Salad bowl - partially visible on left */}
+        {/* Salad bowl - same size, position and opacity as the dashboard */}
         <motion.div
-          className="absolute bottom-0 -left-24 z-[1] pointer-events-none opacity-40"
-          style={{ width: "520px", height: "520px" }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.4 }}
-          transition={{ duration: 0.8 }}
+          className="absolute top-1/2 -translate-y-1/2 z-[2] pointer-events-none"
+          style={{ left: "-414px", width: "966px", height: "966px" }}
         >
-          <img src={FOOD_IMG} alt="" className="w-full h-full object-contain" />
+          <img src={FOOD_IMG} alt="Healthy meal" className="w-full h-full object-contain" />
         </motion.div>
 
         {/* Top navigation */}
@@ -92,7 +119,7 @@ export default function PageShell({ title, subtitle, children }: PageShellProps)
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300"
               >
                 <Icon className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">{tab.label}</span>
+                <span className="hidden sm:inline text-[15px]" style={{ fontFamily: "var(--font-caveat)" }}>{tab.label}</span>
               </Link>
             );
           })}
@@ -128,7 +155,7 @@ export default function PageShell({ title, subtitle, children }: PageShellProps)
             className="w-full max-w-5xl h-full max-h-[calc(100vh-6rem)] bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl shadow-black/40 border border-white/10 overflow-hidden flex flex-col"
             style={{ backgroundColor: "#FDF9F0" }}
           >
-            <div className="px-6 sm:px-10 pt-8 pb-4 border-b border-[#274D2F]/10 shrink-0 flex items-start gap-4">
+            <div className="px-6 sm:px-10 pt-8 pb-4 border-b border-[rgba(200,139,66,0.25)] shrink-0 flex items-start gap-4">
               <div className="flex-1 min-w-0">
                 <PageHeader title={title} subtitle={subtitle} />
               </div>
@@ -136,7 +163,7 @@ export default function PageShell({ title, subtitle, children }: PageShellProps)
                 onClick={() => router.push("/dashboard?open=menu")}
                 aria-label="Exit page and open menu"
                 title="Menu"
-                className="w-10 h-10 rounded-full bg-[#274D2F]/5 border border-[#274D2F]/10 flex items-center justify-center shrink-0 transition-all duration-200 hover:rotate-90 hover:bg-[#B96A28]/10 hover:border-[#B96A28]/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B96A28]/50"
+                className="w-10 h-10 rounded-full bg-[#C88B42]/10 border border-[#C88B42]/25 flex items-center justify-center shrink-0 transition-all duration-200 hover:rotate-90 hover:bg-[#B96A28]/10 hover:border-[#B96A28]/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B96A28]/50"
               >
                 <X className="w-5 h-5" style={{ color: "#2E2B28" }} />
               </button>

@@ -158,6 +158,7 @@ export default function OrdersPage() {
 
   return (
     <PageShell
+      panel="order-history"
       title="Order History"
       subtitle="Your past orders, receipts and the cheapest platform for every cart"
     >
