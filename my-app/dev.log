@@ -54,3 +54,26 @@
  GET /dashboard 200 in 310ms (next.js: 5ms, application-code: 306ms)
 ✓ Compiled in 232ms
  GET /dashboard 200 in 220ms (next.js: 162ms, application-code: 58ms)
+ GET / 200 in 170ms (next.js: 20ms, application-code: 150ms)
+✓ Compiled in 100ms
+ GET /dashboard 200 in 242ms (next.js: 152ms, application-code: 91ms)
+ GET / 200 in 54ms (next.js: 21ms, application-code: 33ms)
+✓ Compiled in 187ms
+ GET /dashboard 200 in 411ms (next.js: 269ms, application-code: 142ms)
+ GET / 200 in 77ms (next.js: 31ms, application-code: 46ms)
+✓ Compiled in 80ms
+ GET /dashboard 200 in 216ms (next.js: 171ms, application-code: 45ms)
+✓ Compiled in 180ms
+ GET / 200 in 387ms (next.js: 342ms, application-code: 46ms)
+ GET /dashboard?panel=profile 200 in 392ms (next.js: 229ms, application-code: 163ms)
+✓ Compiled in 90ms
+ GET /dashboard 200 in 307ms (next.js: 179ms, application-code: 129ms)
+ GET / 200 in 80ms (next.js: 22ms, application-code: 58ms)
+✓ Compiled in 81ms
+ GET / 200 in 304ms (next.js: 71ms, application-code: 233ms)
+ GET /dashboard 200 in 195ms (next.js: 153ms, application-code: 43ms)
+✓ Compiled in 93ms
+ GET / 200 in 319ms (next.js: 265ms, application-code: 54ms)
+ GET /dashboard 200 in 323ms (next.js: 199ms, application-code: 124ms)
+ GET /dashboard 200 in 271ms (next.js: 8ms, application-code: 263ms)
+ GET /dashboard 200 in 91ms (next.js: 7ms, application-code: 84ms)

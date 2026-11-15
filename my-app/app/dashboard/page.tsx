@@ -113,6 +113,13 @@ const DROPDOWN_OPTIONS: Record<string, string[]> = {
 export default function DashboardPage() {
   const router = useRouter();
   const [currentSection, setCurrentSection] = useState(0);
+  const navDirectionRef = useRef(1);
+
+  const sectionVariants = {
+    enter: () => ({ opacity: 0, rotate: -navDirectionRef.current * 90 }),
+    center: { opacity: 1, rotate: 0 },
+    exit: () => ({ opacity: 0, rotate: navDirectionRef.current * 90 }),
+  };
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [selectedValues, setSelectedValues] = useState<Record<string, string>>({});
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -137,12 +144,18 @@ export default function DashboardPage() {
     }
   }, []);
 
+  const goToSection = (next: number) => {
+    if (next === currentSection) return;
+    navDirectionRef.current = next > currentSection ? 1 : -1;
+    setCurrentSection(next);
+  };
+
   const handleLeftClick = () => {
-    setCurrentSection((prev) => Math.max(0, prev - 1));
+    goToSection(Math.max(0, currentSection - 1));
   };
 
   const handleRightClick = () => {
-    setCurrentSection((prev) => Math.min(3, prev + 1));
+    goToSection(Math.min(3, currentSection + 1));
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -241,7 +254,7 @@ export default function DashboardPage() {
           return (
             <button
               key={tab.id}
-              onClick={() => setCurrentSection(tab.id)}
+              onClick={() => goToSection(tab.id)}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
                 isActive
                   ? "bg-[#274D2F] text-white shadow-lg shadow-[#274D2F]/30"
@@ -276,15 +289,16 @@ export default function DashboardPage() {
 
       {/* Section Content */}
       <div className="absolute inset-0 z-40">
-        <AnimatePresence mode="wait">
+        <AnimatePresence>
           {/* Section 0: Preferences */}
           {currentSection === 0 && (
             <motion.div
               key="preferences"
-              initial={{ opacity: 0, x: 60 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -60 }}
-              transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+              variants={sectionVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
               className="absolute inset-0 flex items-center justify-center pl-[38%] pr-8 md:pr-12 lg:pr-16"
             >
             <div className="w-full max-w-2xl mt-8">
@@ -440,10 +454,11 @@ export default function DashboardPage() {
         {currentSection === 1 && (
           <motion.div
             key="mealplan"
-            initial={{ opacity: 0, x: 60 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -60 }}
-            transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+            variants={sectionVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
             className="absolute inset-0 flex items-center justify-center pl-[38%] pr-8 md:pr-12 lg:pr-16"
           >
             <div className="w-full max-w-3xl">
@@ -558,10 +573,11 @@ export default function DashboardPage() {
         {currentSection === 2 && (
           <motion.div
             key="groceries"
-            initial={{ opacity: 0, x: 60 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -60 }}
-            transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+            variants={sectionVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
             className="absolute inset-0 flex items-center justify-center pl-[38%] pr-8 md:pr-6 lg:pr-2 right-6 "
           >
             <div className="w-full max-w-lg">
@@ -661,10 +677,11 @@ export default function DashboardPage() {
         {currentSection === 3 && (
           <motion.div
             key="progress"
-            initial={{ opacity: 0, x: 60 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -60 }}
-            transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+            variants={sectionVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
             className="absolute inset-0 flex items-center justify-center pl-[38%] pr-8 md:pr-12 lg:pr-16"
           >
             <div className="w-full max-w-md">
@@ -801,7 +818,7 @@ export default function DashboardPage() {
         {NAV_TABS.map((tab) => (
           <button
             key={tab.id}
-            onClick={() => setCurrentSection(tab.id)}
+            onClick={() => goToSection(tab.id)}
             className={`w-2 h-2 rounded-full transition-all duration-300 ${
               currentSection === tab.id
                 ? "bg-[#274D2F] w-6"
