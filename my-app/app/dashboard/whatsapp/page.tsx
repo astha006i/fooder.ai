@@ -177,7 +177,7 @@ export default function WhatsAppPage() {
                 <div>
                   <h3
                     className="text-lg font-bold"
-                    style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}
+                    style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}
                   >
                     Connection status
                   </h3>
@@ -262,7 +262,7 @@ export default function WhatsAppPage() {
                 <div>
                   <h3
                     className="text-lg font-bold"
-                    style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}
+                    style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}
                   >
                     Pair a new device
                   </h3>
@@ -309,7 +309,7 @@ export default function WhatsAppPage() {
                 <div>
                   <h3
                     className="text-lg font-bold"
-                    style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}
+                    style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}
                   >
                     Reminder scheduling
                   </h3>
@@ -366,7 +366,7 @@ export default function WhatsAppPage() {
               <div>
                 <h3
                   className="text-lg font-bold"
-                  style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}
+                  style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}
                 >
                   Preferences
                 </h3>

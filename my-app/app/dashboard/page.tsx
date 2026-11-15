@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { motion, AnimatePresence, rgba } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import ProfileSidebar from "./components/ProfileSidebar";
 import { DashboardPanelsProvider } from "./components/DashboardPanels";
 import {
@@ -168,7 +168,7 @@ export default function DashboardPage() {
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        fontFamily: "var(--font-lora)",
+        fontFamily: "MV Boli, 'Times New Roman', serif",
       }}
     >
       {/* Dark Overlay */}
@@ -249,7 +249,7 @@ export default function DashboardPage() {
               }`}
             >
               <Icon className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline text-[15px]" style={{ fontFamily: "var(--font-caveat)" }}>{tab.label}</span>
+              <span className="hidden sm:inline text-[15px]" style={{ fontFamily: "Harrington, 'Times New Roman', serif" }}>{tab.label}</span>
             </button>
           );
         })}
@@ -265,11 +265,11 @@ export default function DashboardPage() {
         <div className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
           <User className="w-4 h-4 text-white" />
         </div>
-        <span className="text-white font-medium text-sm drop-shadow-md">Hi, User</span>
+        <span className="text-white font-medium text-sm drop-shadow-md" style={{ fontFamily: "Harrington, 'Times New Roman', serif" }}>Hi, User</span>
       </button>
 
       {/* Top Right: Logout */}
-      <button onClick={() => router.push("/")} className="absolute top-5 right-5 z-50 flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium border border-white/20 hover:bg-white/20 transition-all">
+      <button onClick={() => router.push("/")} className="absolute top-5 right-5 z-50 flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium border border-white/20 hover:bg-white/20 transition-all" style={{ fontFamily: "Harrington, 'Times New Roman', serif" }}>
         <LogOut className="w-4 h-4" />
         Logout
       </button>
@@ -296,13 +296,13 @@ export default function DashboardPage() {
                   </div>
                   <div>
                     <div className="flex items-baseline gap-0">
-                      <span className="font-bold text-lg tracking-tight drop-shadow-lg" style={{ fontFamily: "var(--font-cormorant)", color: "#FFFFFF" }}>Fooder</span>
-                      <span className="font-bold text-lg drop-shadow-lg" style={{ fontFamily: "var(--font-cormorant)", color: "#FFFFFF" }}>.AI</span>
+                      <span className="font-bold text-lg tracking-tight drop-shadow-lg" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: "#274D2F" }}>Fooder</span>
+                      <span className="font-bold text-lg drop-shadow-lg" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: "#274D2F" }}>.AI</span>
                     </div>
-                    <span className="block text-[9px] tracking-wider uppercase drop-shadow-md" style={{ color: "#FFFFFF", fontFamily: "var(--font-lora)" }}>Your AI Chef</span>
+                    <span className="block text-[9px] tracking-wider uppercase drop-shadow-md" style={{ color: "#FFFFFF", fontFamily: "MV Boli, 'Times New Roman', serif" }}>Your AI Chef</span>
                   </div>
                 </div>
-                <p className="text-FOREST/90 text-base md:text-lg max-w-lg leading-relaxed drop-shadow-md">
+                <p className="text-FOREST/90 text-sm md:text-base max-w-lg leading-relaxed drop-shadow-md">
                   Your AI will plan weekly meal preps tailored to your lifestyle.
                   <br />
                   Enter your preferences below to get started.
@@ -511,7 +511,7 @@ export default function DashboardPage() {
                       <div className="relative -mt-25 px-3 py-2 text-center z-20">
                         <h3
                           className="text-[17px] font-bold leading-snug line-clamp-2"
-                          style={{ fontFamily: "var(--font-cormorant)", color: "#274D2F" }}
+                          style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: "#274D2F" }}
                         >
                           {meal.title}
                         </h3>
@@ -519,7 +519,7 @@ export default function DashboardPage() {
                           <Flame className="w-3.5 h-3.5 text-[#B96A28]" />
                           <span
                             className="text-[13px] font-semibold"
-                            style={{ fontFamily: "var(--font-lora)", color: "#5B4632" }}
+                            style={{ fontFamily: "MV Boli, 'Times New Roman', serif", color: "#5B4632" }}
                           >
                             Calories: {meal.calories} cal
                           </span>
@@ -698,21 +698,21 @@ export default function DashboardPage() {
                       <div className="w-10 h-10 rounded-full bg-[#274D2F]/20 flex items-center justify-center mx-auto mb-2">
                         <Flame className="w-5 h-5 text-[#274D2F]" />
                       </div>
-                      <div className="text-3xl font-bold text-gray-900" style={{ fontFamily: "var(--font-cormorant)" }}>1,850</div>
+                      <div className="text-3xl font-bold text-gray-900" style={{ fontFamily: "Harrington, 'Times New Roman', serif" }}>1,850</div>
                       <div className="text-[10px] text-[#274D2F] font-medium uppercase tracking-wider">Calories</div>
                     </div>
                     <div className="bg-blue-50 rounded-2xl p-4 text-center border border-blue-100">
                       <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-2">
                         <Zap className="w-5 h-5 text-blue-600" />
                       </div>
-                      <div className="text-3xl font-bold text-gray-900" style={{ fontFamily: "var(--font-cormorant)" }}>42g</div>
+                      <div className="text-3xl font-bold text-gray-900" style={{ fontFamily: "Harrington, 'Times New Roman', serif" }}>42g</div>
                       <div className="text-[10px] text-[#274D2F] font-medium uppercase tracking-wider">Protein</div>
                     </div>
                     <div className="bg-orange-50 rounded-2xl p-4 text-center border border-orange-100">
                       <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center mx-auto mb-1">
                         <Timer className="w-5 h-5 text-orange-600" />
                       </div>
-                      <div className="text-3xl font-bold text-gray-900" style={{ fontFamily: "var(--font-cormorant)" }}>7</div>
+                      <div className="text-3xl font-bold text-gray-900" style={{ fontFamily: "Harrington, 'Times New Roman', serif" }}>7</div>
                       <div className="text-[10px] text-[#274D2F] font-medium uppercase tracking-wider">Day Streak</div>
                     </div>
                   </div>
@@ -720,7 +720,7 @@ export default function DashboardPage() {
                   {/* Weekly Progress Bar */}
                   <div className="mb-2">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-bold text-[#274D2F]" style={{ fontFamily: "var(--font-cormorant)" }}>Weekly Goal</span>
+                      <span className="text-sm font-bold text-[#274D2F]" style={{ fontFamily: "Harrington, 'Times New Roman', serif" }}>Weekly Goal</span>
                       <span className="text-xs font-bold text-[#274D2F]">85%</span>
                     </div>
                     <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
@@ -735,7 +735,7 @@ export default function DashboardPage() {
                         <Heart className="w-4 h-4 text-purple-600" />
                       </div>
                       <div>
-                        <div className="text-sm font-bold text-gray-900" style={{ fontFamily: "var(--font-cormorant)" }}>Healthy</div>
+                        <div className="text-sm font-bold text-gray-900" style={{ fontFamily: "Harrington, 'Times New Roman', serif" }}>Healthy</div>
                         <div className="text-[10px] text-[#5B4632]">BMI in range</div>
                       </div>
                     </div>
@@ -744,7 +744,7 @@ export default function DashboardPage() {
                         <Star className="w-4 h-4 text-yellow-600" />
                       </div>
                       <div>
-                        <div className="text-sm font-bold text-gray-900" style={{ fontFamily: "var(--font-cormorant)" }}>Balanced</div>
+                        <div className="text-sm font-bold text-gray-900" style={{ fontFamily: "Harrington, 'Times New Roman', serif" }}>Balanced</div>
                         <div className="text-[10px] text-[#5B4632]">Nutrition score</div>
                       </div>
                     </div>

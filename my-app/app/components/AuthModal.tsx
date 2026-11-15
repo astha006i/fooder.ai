@@ -19,7 +19,7 @@ const inputStyle: CSSProperties = {
   height: "48px",
   backgroundColor: INPUT_BG,
   border: INPUT_BORDER,
-  fontFamily: "var(--font-lora)",
+  fontFamily: "MV Boli, 'Times New Roman', serif",
   color: DARK,
   fontSize: "14px",
 };
@@ -152,7 +152,7 @@ export default function AuthModal({ open, initialView = "signup", onClose }: Aut
       <img src="/fooder_ai_png_assets_transparent_updated (2)/logo.png" alt="Fooder.AI" className="block mx-auto h-14 w-14 object-contain drop-shadow-lg mb-3" />
       <div className="flex items-center justify-center gap-1 mb-1">
         <span className="text-lg leading-none" style={{ color: GOLDEN }}>─</span>
-        <h2 className="text-3xl font-bold" style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}>Create Account</h2>
+        <h2 className="text-3xl font-bold" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}>Create Account</h2>
         <span className="text-lg leading-none" style={{ color: GOLDEN }}>─</span>
       </div>
       <p className="text-lg mt-1" style={{ fontFamily: "var(--font-parisienne)", color: ORANGE }}>Begin your delicious journey!</p>
@@ -168,7 +168,7 @@ export default function AuthModal({ open, initialView = "signup", onClose }: Aut
       <img src="/fooder_ai_png_assets_transparent_updated (2)/logo.png" alt="Fooder.AI" className="block mx-auto h-15 w-15 object-contain drop-shadow-lg mb-3" />
       <div className="flex items-center justify-center gap-2 mb-1">
         <span className="text-lg leading-none" style={{ color: GOLDEN }}>─</span>
-        <h2 className="text-3xl font-bold" style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}>Log In</h2>
+        <h2 className="text-3xl font-bold" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}>Log In</h2>
         <span className="text-lg leading-none" style={{ color: GOLDEN }}>─</span>
       </div>
       <p className="text-lg mt-1" style={{ fontFamily: "var(--font-parisienne)", color: ORANGE }}>Glad to see you again!</p>
@@ -209,16 +209,16 @@ export default function AuthModal({ open, initialView = "signup", onClose }: Aut
             {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
           </button>
         </div>
-        {error && <p className="text-xs" style={{ color: "#DC2626", fontFamily: "var(--font-lora)" }}>{error}</p>}
-        <button type="submit" className="w-full rounded-lg text-white font-bold shadow-md transition-all hover:shadow-lg hover:scale-[1.02]" style={{ height: "48px", backgroundColor: FOREST, fontFamily: "var(--font-cormorant)", fontSize: "15px" }}>Create Account</button>
+        {error && <p className="text-xs" style={{ color: "#DC2626", fontFamily: "MV Boli, 'Times New Roman', serif" }}>{error}</p>}
+        <button type="submit" className="w-full rounded-lg text-white font-bold shadow-md transition-all hover:shadow-lg hover:scale-[1.02]" style={{ height: "48px", backgroundColor: FOREST, fontFamily: "Harrington, 'Times New Roman', serif", fontSize: "15px" }}>Create Account</button>
       </form>
       <div className="flex items-center gap-4 my-5">
         <div className="flex-1" style={{ height: "1px", backgroundColor: "rgba(200,139,66,0.2)" }} />
-        <span className="text-[10px] uppercase tracking-wider font-semibold flex-shrink-0" style={{ fontFamily: "var(--font-lora)", color: "#B0AAA3" }}>or continue with</span>
+        <span className="text-[10px] uppercase tracking-wider font-semibold flex-shrink-0" style={{ fontFamily: "MV Boli, 'Times New Roman', serif", color: "#B0AAA3" }}>or continue with</span>
         <div className="flex-1" style={{ height: "1px", backgroundColor: "rgba(200,139,66,0.2)" }} />
       </div>
       {socialButtons}
-      <p className="mt-5 text-center text-xs" style={{ fontFamily: "var(--font-lora)", color: "#B0AAA3" }}>
+      <p className="mt-5 text-center text-xs" style={{ fontFamily: "MV Boli, 'Times New Roman', serif", color: "#B0AAA3" }}>
         Already have an account?{" "}
         <button type="button" onClick={() => switchView("login")} className="font-semibold hover:underline" style={{ color: FOREST }}>Log In</button>
       </p>
@@ -241,18 +241,18 @@ export default function AuthModal({ open, initialView = "signup", onClose }: Aut
           </button>
         </div>
         <div className="text-right">
-          <button type="button" className="text-xs font-medium hover:underline" style={{ fontFamily: "var(--font-lora)", color: FOREST }}>Forgot password?</button>
+          <button type="button" className="text-xs font-medium hover:underline" style={{ fontFamily: "MV Boli, 'Times New Roman', serif", color: FOREST }}>Forgot password?</button>
         </div>
-        {error && <p className="text-xs" style={{ color: "#DC2626", fontFamily: "var(--font-lora)" }}>{error}</p>}
-        <button type="submit" className="w-full rounded-lg text-white font-bold shadow-md transition-all hover:shadow-lg hover:scale-[1.02]" style={{ height: "48px", backgroundColor: FOREST, fontFamily: "var(--font-cormorant)", fontSize: "15px" }}>Log In</button>
+        {error && <p className="text-xs" style={{ color: "#DC2626", fontFamily: "MV Boli, 'Times New Roman', serif" }}>{error}</p>}
+        <button type="submit" className="w-full rounded-lg text-white font-bold shadow-md transition-all hover:shadow-lg hover:scale-[1.02]" style={{ height: "48px", backgroundColor: FOREST, fontFamily: "Harrington, 'Times New Roman', serif", fontSize: "15px" }}>Log In</button>
       </form>
       <div className="flex items-center gap-4 my-5">
         <div className="flex-1" style={{ height: "1px", backgroundColor: "rgba(200,139,66,0.2)" }} />
-        <span className="text-[10px] uppercase tracking-wider font-semibold flex-shrink-0" style={{ fontFamily: "var(--font-lora)", color: "#B0AAA3" }}>or continue with</span>
+        <span className="text-[10px] uppercase tracking-wider font-semibold flex-shrink-0" style={{ fontFamily: "MV Boli, 'Times New Roman', serif", color: "#B0AAA3" }}>or continue with</span>
         <div className="flex-1" style={{ height: "1px", backgroundColor: "rgba(200,139,66,0.2)" }} />
       </div>
       {socialButtons}
-      <p className="mt-5 text-center text-xs" style={{ fontFamily: "var(--font-lora)", color: "#B0AAA3" }}>
+      <p className="mt-5 text-center text-xs" style={{ fontFamily: "MV Boli, 'Times New Roman', serif", color: "#B0AAA3" }}>
         New here?{" "}
         <button type="button" onClick={() => switchView("signup")} className="font-semibold hover:underline" style={{ color: FOREST }}>Sign up</button>
       </p>

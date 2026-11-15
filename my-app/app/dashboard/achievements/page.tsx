@@ -136,7 +136,7 @@ function StatCard({
         <div>
           <div
             className="text-3xl font-bold leading-none"
-            style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}
+            style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}
           >
             {value}
           </div>
@@ -189,7 +189,7 @@ function AchievementCard({ achievement }: { achievement: Achievement }) {
           </div>
           <h3
             className="text-lg font-bold leading-snug"
-            style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}
+            style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}
           >
             {achievement.title}
           </h3>

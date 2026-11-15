@@ -57,14 +57,14 @@ export function SectionTitle({
     <div className="mb-6">
       <h2
         className="text-2xl font-bold tracking-tight"
-        style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}
+        style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}
       >
         {title}
       </h2>
       {subtitle && (
         <p
           className="text-sm mt-1"
-          style={{ fontFamily: "var(--font-lora)", fontStyle: "italic", color: "#8A8580" }}
+          style={{ fontFamily: "MV Boli, 'Times New Roman', serif", fontStyle: "italic", color: "#8A8580" }}
         >
           {subtitle}
         </p>
@@ -153,7 +153,7 @@ export function Field({
     <label className="block">
       <span
         className="block mb-1.5 text-[11px] font-semibold uppercase tracking-wider"
-        style={{ color: GOLDEN, fontFamily: "var(--font-lora)" }}
+        style={{ color: GOLDEN, fontFamily: "MV Boli, 'Times New Roman', serif" }}
       >
         {label}
       </span>
@@ -320,7 +320,7 @@ export function EmptyState({
       >
         <Icon className="w-7 h-7 text-[#B96A28]" />
       </div>
-      <h3 className="text-lg font-bold" style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}>
+      <h3 className="text-lg font-bold" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}>
         {title}
       </h3>
       <p className="text-sm mt-1 max-w-xs" style={{ color: "#8B8178" }}>

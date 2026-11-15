@@ -362,7 +362,7 @@ export default function TermsAndConditionsPage() {
                       </span>
                       <h2
                         className="text-xl font-bold tracking-tight sm:text-2xl"
-                        style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}
+                        style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}
                       >
                         {section.title}
                       </h2>
@@ -372,7 +372,7 @@ export default function TermsAndConditionsPage() {
                         <p
                           key={paragraph}
                           className="text-sm leading-relaxed"
-                          style={{ fontFamily: "var(--font-lora)", color: "#4A4540" }}
+                          style={{ fontFamily: "MV Boli, 'Times New Roman', serif", color: "#4A4540" }}
                         >
                           {paragraph}
                         </p>

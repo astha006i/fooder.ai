@@ -295,7 +295,7 @@ export default function NotificationsPage() {
                   <div>
                     <h3
                       className="text-lg font-bold"
-                      style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}
+                      style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}
                     >
                       Notification preferences
                     </h3>

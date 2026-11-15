@@ -310,7 +310,7 @@ export default function SavedMealsPage() {
                       <div className="p-5">
                         <h3
                           className="text-lg font-bold leading-snug"
-                          style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}
+                          style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}
                         >
                           {plan.title}
                         </h3>
@@ -486,7 +486,7 @@ export default function SavedMealsPage() {
               <PaperCard className="p-6">
                 <h3
                   className="text-xl font-bold mb-1"
-                  style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}
+                  style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}
                 >
                   Rename plan
                 </h3>

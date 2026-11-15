@@ -43,7 +43,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" style={{ backgroundColor: "#F8F1E6" }}>
+    <html lang="en" data-scroll-behavior="smooth" style={{ backgroundColor: "#F8F1E6" }}>
       <body className={`${cormorant.variable} ${lora.variable} ${caveat.variable} ${inter.variable} ${parisienne.variable}`} style={{ backgroundColor: "#F8F1E6" }}>
         {children}
       </body>

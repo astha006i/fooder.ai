@@ -256,7 +256,7 @@ export default function FavoritesPage() {
                       <div className="p-5">
                         <h3
                           className="text-lg font-bold leading-snug"
-                          style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}
+                          style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}
                         >
                           {recipe.title}
                         </h3>

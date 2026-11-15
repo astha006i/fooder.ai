@@ -94,7 +94,7 @@ export default function PageShell({ title, subtitle, panel, panelTab, children }
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          fontFamily: "var(--font-lora)",
+          fontFamily: "MV Boli, 'Times New Roman', serif",
         }}
       >
         {/* Dark overlay */}
@@ -119,7 +119,7 @@ export default function PageShell({ title, subtitle, panel, panelTab, children }
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300"
               >
                 <Icon className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline text-[15px]" style={{ fontFamily: "var(--font-caveat)" }}>{tab.label}</span>
+                <span className="hidden sm:inline text-[15px]" style={{ fontFamily: "Harrington, 'Times New Roman', serif" }}>{tab.label}</span>
               </Link>
             );
           })}
@@ -134,13 +134,14 @@ export default function PageShell({ title, subtitle, panel, panelTab, children }
           <div className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
             <User className="w-4 h-4 text-white" />
           </div>
-          <span className="text-white font-medium text-sm drop-shadow-md">Hi, User</span>
+          <span className="text-white font-medium text-sm drop-shadow-md" style={{ fontFamily: "Harrington, 'Times New Roman', serif" }}>Hi, User</span>
         </button>
 
         {/* Top right: logout */}
         <button
           onClick={handleLogout}
           className="absolute top-5 right-5 z-30 flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium border border-white/20 hover:bg-white/20 transition-all"
+          style={{ fontFamily: "Harrington, 'Times New Roman', serif" }}
         >
           <LogOut className="w-4 h-4" />
           Logout

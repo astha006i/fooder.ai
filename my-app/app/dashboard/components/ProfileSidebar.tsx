@@ -20,7 +20,6 @@ import {
   ChevronRight,
   LogOut,
   Camera,
-  Crown,
   Pencil,
   X,
 } from "lucide-react";
@@ -189,11 +188,20 @@ export default function ProfileSidebar({ isOpen, onClose, onLogout }: ProfileSid
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-            className="fixed inset-y-0 left-0 z-[100] w-[400px] max-w-[90vw] rounded-r-3xl shadow-2xl shadow-black/30 flex flex-col overflow-hidden focus:outline-none"
-            style={{ backgroundColor: CREAM, fontFamily: "var(--font-lora)" }}
+            className="fixed inset-y-0 left-0 z-[100] w-[400px] max-w-[90vw] rounded-none shadow-2xl shadow-black/30 flex flex-col overflow-hidden focus:outline-none"
+            style={{
+              backgroundColor: CREAM,
+              backgroundImage: "url('/assets/progress.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              fontFamily: "MV Boli, 'Times New Roman', serif",
+            }}
           >
+            {/* Translucent cream overlay for readability */}
+            <div className="absolute inset-0 pointer-events-none" style={{ backgroundColor: "rgba(248,241,230,0.55)" }} />
+
             {/* Header */}
-            <div className="px-6 pt-8 pb-6 border-b border-[#C88B42]/25">
+            <div className="relative px-6 pt-8 pb-6 border-b border-[#C88B42]/25">
               <div className="flex items-center gap-4">
                 <div className="relative flex-shrink-0">
                   <div
@@ -212,7 +220,7 @@ export default function ProfileSidebar({ isOpen, onClose, onLogout }: ProfileSid
                 <div className="min-w-0 flex-1">
                   <h2
                     className="text-xl font-bold leading-tight truncate"
-                    style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}
+                    style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}
                   >
                     Hi, User
                   </h2>
@@ -244,36 +252,14 @@ export default function ProfileSidebar({ isOpen, onClose, onLogout }: ProfileSid
             </div>
 
             {/* Scrollable Menu */}
-            <div className="flex-1 overflow-y-auto py-6 space-y-8">
+            <div className="relative flex-1 overflow-y-auto py-6 space-y-8">
               <SidebarSection title="My Account" items={ACCOUNT_ITEMS} onSelect={openItem} />
               <div className="mx-6 border-t border-[#C88B42]/25" />
               <SidebarSection title="Support" items={SUPPORT_ITEMS} onSelect={openItem} />
             </div>
 
-            {/* Bottom: Upgrade + Logout */}
-            <div className="px-6 pb-6 pt-4 border-t border-[#C88B42]/25 space-y-3">
-              <button
-                type="button"
-                onClick={() => openItem({ icon: Crown, label: "Upgrade to Fooder.AI Pro", panel: "upgrade" })}
-                className="group w-full flex items-center gap-3 px-4 py-4 rounded-2xl bg-gradient-to-r from-yellow-200 via-amber-100 to-yellow-200 border border-yellow-300/60 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B96A28]/40 cursor-pointer"
-              >
-                <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 shadow-inner"
-                  style={{ backgroundColor: GOLDEN }}
-                >
-                  <Crown className="w-5 h-5 text-white" />
-                </div>
-                <div className="flex-1 text-left">
-                  <p className="text-sm font-bold" style={{ color: FOREST }}>
-                    Upgrade to Fooder.AI Pro
-                  </p>
-                  <p className="text-xs mt-0.5" style={{ color: "#8B8178" }}>
-                    Unlimited meal plans & priority support
-                  </p>
-                </div>
-                <ChevronRight className="w-4 h-4 text-[#B96A28] transition-transform group-hover:translate-x-0.5" />
-              </button>
-
+            {/* Bottom: Logout */}
+            <div className="relative px-6 pb-6 pt-4 border-t border-[#C88B42]/25 space-y-3">
               <button
                 onClick={() => setConfirmLogout(true)}
                 className="group w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-red-500/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400/40"
@@ -312,7 +298,7 @@ export default function ProfileSidebar({ isOpen, onClose, onLogout }: ProfileSid
                 </div>
                 <h3
                   className="text-xl font-bold"
-                  style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}
+                  style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}
                 >
                   Log out of Fooder.AI?
                   </h3>

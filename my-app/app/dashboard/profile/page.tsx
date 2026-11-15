@@ -278,7 +278,7 @@ export default function ProfilePage() {
                     <div
                       className="text-lg font-bold"
                       style={{
-                        fontFamily: "var(--font-cormorant)",
+                        fontFamily: "Harrington, 'Times New Roman', serif",
                         color: DARK,
                       }}
                     >

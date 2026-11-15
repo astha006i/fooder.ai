@@ -281,7 +281,7 @@ export default function UpgradePage() {
 
                     <h3
                       className="text-2xl font-bold mb-1"
-                      style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}
+                      style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}
                     >
                       {plan.name}
                     </h3>
@@ -298,7 +298,7 @@ export default function UpgradePage() {
                           exit={{ opacity: 0, y: -12 }}
                           transition={{ duration: 0.22, ease: [0.4, 0, 0.2, 1] }}
                           className="text-4xl font-bold leading-none"
-                          style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}
+                          style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}
                         >
                           ₹{yearly ? plan.yearly : plan.monthly}
                         </motion.span>
@@ -447,7 +447,7 @@ export default function UpgradePage() {
                 <div>
                   <div
                     className="text-sm font-bold"
-                    style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}
+                    style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}
                   >
                     {testimonial.name}
                   </div>

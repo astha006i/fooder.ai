@@ -67,7 +67,7 @@ export default function ContactPage() {
               <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4" style={{ backgroundColor: "#E8F0E9" }}>
                 <CheckCircle2 className="w-8 h-8" style={{ color: FOREST }} />
               </div>
-              <h3 className="text-xl font-bold" style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}>
+              <h3 className="text-xl font-bold" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}>
                 Message Sent!
               </h3>
               <p className="text-sm mt-2 max-w-xs" style={{ color: "#8B8178" }}>
@@ -81,7 +81,7 @@ export default function ContactPage() {
             </motion.div>
           ) : (
             <div className="space-y-4">
-              <h3 className="text-lg font-bold" style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}>
+              <h3 className="text-lg font-bold" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}>
                 Send us a message
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -128,7 +128,7 @@ export default function ContactPage() {
         {/* Info + Socials */}
         <div className="space-y-6">
           <PaperCard className="p-6">
-            <h3 className="text-lg font-bold mb-4" style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}>
+            <h3 className="text-lg font-bold mb-4" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}>
               Office Information
             </h3>
             <div className="space-y-4">
@@ -154,7 +154,7 @@ export default function ContactPage() {
           </PaperCard>
 
           <PaperCard className="p-6">
-            <h3 className="text-lg font-bold mb-4" style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}>
+            <h3 className="text-lg font-bold mb-4" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}>
               Follow us
             </h3>
             <div className="flex flex-wrap gap-3">

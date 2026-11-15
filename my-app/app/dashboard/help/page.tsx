@@ -89,7 +89,7 @@ export default function HelpPage() {
 
         {/* FAQ */}
         <section>
-          <h2 className="text-xl font-bold mb-4" style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}>
+          <h2 className="text-xl font-bold mb-4" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}>
             Frequently Asked Questions
           </h2>
           <div className="space-y-3">
@@ -142,7 +142,7 @@ export default function HelpPage() {
 
         {/* Troubleshooting guides */}
         <section>
-          <h2 className="text-xl font-bold mb-4" style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}>
+          <h2 className="text-xl font-bold mb-4" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}>
             Troubleshooting Guides
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -173,7 +173,7 @@ export default function HelpPage() {
         {/* Support + Ticket */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <PaperCard className="p-6">
-            <h3 className="text-lg font-bold mb-2" style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}>
+            <h3 className="text-lg font-bold mb-2" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}>
               Still need help?
             </h3>
             <p className="text-sm mb-5" style={{ color: "#8B8178" }}>
@@ -192,7 +192,7 @@ export default function HelpPage() {
           </PaperCard>
 
           <PaperCard className="p-6">
-            <h3 className="text-lg font-bold mb-4" style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}>
+            <h3 className="text-lg font-bold mb-4" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}>
               Submit a Support Ticket
             </h3>
             <div className="space-y-4">

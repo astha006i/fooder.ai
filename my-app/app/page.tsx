@@ -1,14 +1,13 @@
-﻿"use client";
+"use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import AuthModal from "./components/AuthModal";
 import {
-  Mail, Lock, Eye, EyeOff, ArrowUpRight, Search, ShoppingCart,
-  Clock, Heart, Smartphone, BarChart3, ClipboardList, Utensils, Leaf,
+  Mail, Lock, Eye, EyeOff, ArrowUpRight, ShoppingCart,
+  Clock, Heart, Smartphone, BarChart3, Leaf,
   Menu, X, ChefHat, Users, TrendingDown,
-  Zap, Award, Recycle, BrainCircuit, Sparkles, BookOpen, CircleCheck,
+  Zap, Recycle, Sparkles, BookOpen, CircleCheck,
 } from "lucide-react";
 
 const CREAM = "#fceabc";
@@ -42,8 +41,8 @@ function StatItem({ stat }: { stat: { value: number; suffix: string; label: stri
   return (
     <div ref={ref} className="text-center">
       <div className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-3" style={{ backgroundColor: "rgba(39,77,47,0.08)" }}><stat.icon className="h-6 w-6" style={{ color: FOREST }} /></div>
-      <div className="text-2xl sm:text-3xl font-bold" style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}>{count}{stat.suffix}</div>
-      <div className="text-xs sm:text-sm mt-1" style={{ fontFamily: "var(--font-lora)", color: "#8A8580" }}>{stat.label}</div>
+      <div className="text-2xl sm:text-3xl font-bold" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}>{count}{stat.suffix}</div>
+      <div className="text-xs sm:text-sm mt-1" style={{ fontFamily: "MV Boli, 'Times New Roman', serif", color: "#8A8580" }}>{stat.label}</div>
     </div>
   );
 }
@@ -120,20 +119,12 @@ const STEPS = [
   { img: IMG("cook_enjoy_and_track"), title: "Cook, Enjoy & Track", desc: "Follow recipes, enjoy meals, and track your progress." },
 ];
 
-const SOCIAL_USERS = [
-  { icon: Users, label: "Students" },
-  { icon: Zap, label: "Professionals" },
-  { icon: Heart, label: "Families" },
-  { icon: ChefHat, label: "Fitness Enthusiasts" },
-  { icon: Users, label: "Home Cooks" },
-];
-
 export default function HomePage() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
+  const [success] = useState(false);
   const router = useRouter();
   const [mobileNav, setMobileNav] = useState(false);
   const [activeNav, setActiveNav] = useState("Home");
@@ -159,28 +150,30 @@ export default function HomePage() {
                   <img src="/fooder_ai_png_assets_transparent_updated (2)/logo.png" alt="Fooder.AI" className="h-full w-full object-contain drop-shadow-lg" />
                 </div>
                 <div>
-                  <span className="font-bold text-lg tracking-tight" style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}>Fooder</span>
-                  <span className="font-bold text-lg" style={{ fontFamily: "var(--font-cormorant)", color: ORANGE }}>.AI</span>
-                  <span className="block text-[9px] tracking-wider uppercase" style={{ color: GOLDEN, fontFamily: "var(--font-lora)" }}>Your AI Chef</span>
+                  <span className="font-bold text-lg tracking-tight" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}>Fooder</span>
+                  <span className="font-bold text-lg" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: ORANGE }}>.AI</span>
+                  <span className="block text-[9px] tracking-wider uppercase" style={{ color: GOLDEN, fontFamily: "MV Boli, 'Times New Roman', serif" }}>Your AI Chef</span>
                 </div>
               </div>
               <nav className="hidden lg:flex items-center gap-1">
                 {NAV_LINKS.map((link) => (
-                  <a key={link.label} href={link.href} onClick={() => setActiveNav(link.label)} className="relative px-4 py-2 text-lg rounded-lg transition-colors" style={{ fontFamily: "var(--font-caveat)", color: activeNav === link.label ? FOREST : DARK }}>
+                  <a key={link.label} href={link.href} onClick={() => setActiveNav(link.label)} className="relative px-4 py-2 text-lg rounded-lg transition-colors" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: activeNav === link.label ? FOREST : DARK }}>
                     {link.label}
                     {activeNav === link.label && <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 rounded-full" style={{ backgroundColor: ORANGE }} />}
                   </a>
                 ))}
               </nav>
               <div className="flex items-center gap-3">
-                <button type="button" onClick={() => setIsLoginOpen(true)} className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white transition-all hover:scale-105 hover:shadow-lg" style={{ backgroundColor: FOREST, fontFamily: "var(--font-lora)" }}>Log In / Sign In</button>
+                <button type="button" onClick={() => setIsLoginOpen(true)} className="hidden sm:block transition-transform hover:scale-105" style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }} aria-label="Log In / Sign In">
+                  <img src="/badges_transparent/log_in_sign_in.png" alt="Log In / Sign In" className="block object-contain" style={{ width: "140px", height: "auto" }} />
+                </button>
                 <button onClick={() => setMobileNav(!mobileNav)} className="lg:hidden p-2 rounded-lg" style={{ color: FOREST }}>{mobileNav ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}</button>
               </div>
             </nav>
             {mobileNav && (
               <div className="lg:hidden mt-2 rounded-2xl p-4 space-y-1" style={{ backgroundColor: "rgba(225, 206, 174, 0.95)", backdropFilter: "blur(12px)", border: "1px solid rgba(200,139,66,0.15)" }}>
                 {NAV_LINKS.map((link) => (
-                  <a key={link.label} href={link.href} onClick={() => { setActiveNav(link.label); setMobileNav(false); }} className="block px-4 py-2.5 rounded-lg text-base" style={{ fontFamily: "var(--font-caveat)", color: activeNav === link.label ? FOREST : DARK }}>{link.label}</a>
+                  <a key={link.label} href={link.href} onClick={() => { setActiveNav(link.label); setMobileNav(false); }} className="block px-4 py-2.5 rounded-lg text-base" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: activeNav === link.label ? FOREST : DARK }}>{link.label}</a>
                 ))}
                 <button type="button" onClick={() => { setMobileNav(false); setIsLoginOpen(true); }} className="block text-center px-4 py-2.5 rounded-full text-sm font-semibold text-white" style={{ backgroundColor: FOREST }}>Log In / Sign Up</button>
               </div>
@@ -190,7 +183,7 @@ export default function HomePage() {
 
         {/* ========== HERO SECTION ========== */}
         <section className="relative overflow-hidden" style={{ minHeight: "90vh", paddingBottom: "0px" }}>
-          <img src="/food/login_transparent_images/kitchen.png" alt="" className="absolute pointer-events-none z-[60] hidden lg:block" style={{ width: "476px", right: "68%", top: "-90px", opacity: 1 }} />
+          <img src="/food/login_transparent_images/kitchen.png" alt="" className="absolute pointer-events-none z-[60] hidden lg:block" style={{ width: "500px", right: "67.4%", top: "-90px", opacity: 1 }} />
           <div className="relative ml-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 lg:mr-12 pt-12 lg:pt-16">
             <div className="relative flex flex-col lg:flex-row gap-12 lg:gap-10">
               {/* ── LEFT COLUMN ── */}
@@ -210,16 +203,16 @@ export default function HomePage() {
 
                   <AnimDiv delay={0.2} className="relative">
                      <div className="mx-auto text-center" style={{ maxWidth: "490px" }}>
-                        <h1 className="text-8xl lg:text-5xl leading-tight" style={{ fontFamily: "Algerian, 'Times New Roman', serif", lineHeight: "1" }}>
-                          <span style={{ color: FOREST }}>Good Choices.</span><br />
-                          <span style={{ color: ORANGE }}>Smarter Meals.</span><br />
-                          <span style={{ color: FOREST }}>Better You.</span>
+                        <h1 className="text-8xl lg:text-5xl leading-tight" style={{ fontFamily: "Harrington, 'Blackadder ITC', 'Times New Roman', serif", lineHeight: "1", fontWeight: "bold" }}>
+                          <span style={{ color: FOREST }}>Good  Choices.</span><br />
+                          <span style={{ color: ORANGE }}>Smarter  Meals.</span><br />
+                          <span style={{ color: FOREST }}>Better  You.</span>
                       </h1>
                     </div>
                   </AnimDiv>
 
                   <AnimDiv delay={0.3}>
-                    <p className="mx-auto text-center italic text-sm" style={{ fontFamily: "var(--font-lora)", color: "#5A5550" }}>
+                    <p className="mx-auto text-center italic text-sm" style={{ fontFamily: "Pristina, 'Times New Roman', serif", color: "#5A5550" }}>
                       <span> Fooder.AI helps you create healthy, budget-friendly</span><br />
                       <span>   meals in minutes using ingredients  </span><br/>
                        already available in your fridge.
@@ -232,7 +225,9 @@ export default function HomePage() {
                     <div className="flex flex-col gap-2 pt-1">
                       
                       <div className="flex flex-wrap items-center justify-center gap-2">
-                        <button type="button" onClick={() => setIsSignupOpen(true)} className="inline-flex items-center justify-center w-fit px-16 rounded-full py-2.5 text-white font-semibold text-xs shadow-md transition-all hover:shadow-lg hover:scale-[1.02]" style={{ backgroundColor: FOREST, fontFamily: "var(--font-lora)" }}>Get Started</button>
+                        <button type="button" onClick={() => setIsSignupOpen(true)} className="transition-transform hover:scale-[1.02]" style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }} aria-label="Get Started">
+                          <img src="/badges_transparent/get_started.png" alt="Get Started" className="block object-contain" style={{ width: "200px", height: "auto" }} />
+                        </button>
                       </div>
                       <div className="mx-auto text-center">
                         <span className="text-sm italic animate-sway" style={{ fontFamily: "var(--font-caveat)", color: GOLDEN }}>It&apos;s free &amp; takes less than a minute!</span>
@@ -245,9 +240,9 @@ export default function HomePage() {
               {/* ── RIGHT COLUMN ── */}
               <div className="relative lg:w-[45%] flex-shrink-0 flex items-start justify-center lg:ml-[-51px]">
                 <img src="/food/login_transparent_images/goodchoices.png" alt="" className="absolute pointer-events-none hidden lg:block z-[10] animate-sway" style={{ width: "140px", right: "60px", top: "-90px", opacity: 1 }} />
-                <img src={IMG("avocado")} alt="" className="absolute pointer-events-none hidden lg:block z-[87]" style={{ width: "230px", left: "-170px", top: "290px", opacity: 1 }} />
+                <img src={IMG("avocado")} alt="" className="absolute pointer-events-none hidden lg:block z-[87] animate-sway" style={{ width: "230px", left: "-170px", top: "290px", opacity: 1 }} />
                 <img src={IMG("garlic")} alt="" className="absolute pointer-events-none hidden lg:block z-[85] " style={{ width: "240px", left: "-80px", top: "70px", opacity: 1 }} />
-                <img src="/food/login_transparent_images/tea2.png" alt="" className="absolute pointer-events-none hidden lg:block z-30" style={{ width: "290px", right: "-90px", bottom: "-62px", opacity: 1 }} />
+                <img src="/food/login_transparent_images/tea2.png" alt="" className="absolute pointer-events-none hidden lg:block z-30" style={{ width: "350px", right: "-98px", bottom: "-105px", opacity: 1 }} />
                 <img src={IMG("eiffel_tower")} alt="" className="absolute pointer-events-none hidden lg:block z-[6]" style={{ width: "260px", right: "-75px", bottom: "-10px", opacity: 1 }} />
 
                 {/* Login card */}
@@ -255,30 +250,32 @@ export default function HomePage() {
                   <div className="rounded-[20px] px-8 py-10" style={{ backgroundColor: "#ecdcc4", boxShadow: "0 10px 30px rgba(0,0,0,0.08)" }}>
                     <div className="text-center mb-4">
                       <h2 className="text-[2.5rem] font-bold" style={{ fontFamily: "var(--font-caveat)", color: DARK }}>Welcome Back!</h2>
-                      <p className="text-xs mt-0.5" style={{ fontFamily: "var(--font-lora)", color: "#434b3a" }}>Let&apos;s continue your delicious journey.</p>
+                      <p className="text-xs mt-0.5" style={{ fontFamily: "MV Boli, 'Times New Roman', serif", color: "#434b3a" }}>Let&apos;s continue your delicious journey.</p>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-2.5 w-full">
                       <div className="relative">
                         <Mail className="absolute left-3.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2" style={{ color: "#B0AAA3" }} />
-                        <input type="text" placeholder="Email or username" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full rounded-full py-2.5 pl-10 pr-3 text-xs outline-none" style={{ backgroundColor: "rgba(255,255,255,0.7)", border: "1px solid rgba(200,139,66,0.2)", fontFamily: "var(--font-lora)", color: DARK }} />
+                        <input type="text" placeholder="Email or username" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full rounded-full py-2.5 pl-10 pr-3 text-xs outline-none" style={{ backgroundColor: "rgba(255,255,255,0.7)", border: "1px solid rgba(200,139,66,0.2)", fontFamily: "MV Boli, 'Times New Roman', serif", color: DARK }} />
                       </div>
                       <div className="relative">
                         <Lock className="absolute left-3.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2" style={{ color: "#B0AAA3" }} />
-                        <input type={showPassword ? "text" : "password"} placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full rounded-full py-2.5 pl-10 pr-9 text-xs outline-none" style={{ backgroundColor: "rgba(255,255,255,0.7)", border: "1px solid rgba(200,139,66,0.2)", fontFamily: "var(--font-lora)", color: DARK }} />
+                        <input type={showPassword ? "text" : "password"} placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full rounded-full py-2.5 pl-10 pr-9 text-xs outline-none" style={{ backgroundColor: "rgba(255,255,255,0.7)", border: "1px solid rgba(200,139,66,0.2)", fontFamily: "MV Boli, 'Times New Roman', serif", color: DARK }} />
                         <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3.5 top-1/2 -translate-y-1/2" style={{ color: "#B0AAA3" }}>{showPassword ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}</button>
                       </div>
                       {error && <p className="text-[10px] text-red-500">{error}</p>}
                       <div className="flex justify-end"><a href="#" className="text-[10px] font-medium hover:underline" style={{ color: GOLDEN }}>Forgot password?</a></div>
                       {!success ? (
-                        <button type="submit" className="w-full rounded-full py-2.5 text-white font-semibold text-xs shadow-md transition-all hover:shadow-lg hover:scale-[1.02]" style={{ backgroundColor: FOREST, fontFamily: "var(--font-lora)" }}>Log In</button>
+                        <button type="submit" className="block mx-auto transition-transform hover:scale-[1.02]" style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }} aria-label="Log In">
+                          <img src="/badges_transparent/log_in.png" alt="Log In" className="block object-contain" style={{ width: "220px", height: "auto" }} />
+                        </button>
                       ) : (
                         <div className="rounded-full py-2.5 text-center font-semibold text-xs" style={{ backgroundColor: "rgba(39,77,47,0.1)", color: FOREST }}>You&apos;re in! Welcome back!</div>
                       )}
                     </form>
                     <div className="my-4 flex items-center gap-2 w-full">
                       <span className="flex-1 h-px" style={{ backgroundColor: "rgba(200,139,66,0.2)" }} />
-                      <span className="text-[9px] uppercase tracking-wider font-semibold" style={{ fontFamily: "var(--font-lora)", color: "#B0AAA3" }}>or continue with</span>
+                      <span className="text-[9px] uppercase tracking-wider font-semibold" style={{ fontFamily: "MV Boli, 'Times New Roman', serif", color: "#B0AAA3" }}>or continue with</span>
                       <span className="flex-1 h-px" style={{ backgroundColor: "rgba(200,139,66,0.2)" }} />
                     </div>
                     <div className="grid grid-cols-3 gap-2.5 w-full">
@@ -290,7 +287,7 @@ export default function HomePage() {
                       </button>
                       <button type="button" className="flex items-center justify-center rounded-xl py-2.5 transition-all hover:scale-105" style={{ backgroundColor: "rgba(255,255,255,0.7)", border: "1px solid rgba(200,139,66,0.15)" }}><Mail className="h-4 w-4" style={{ color: DARK }} /></button>
                     </div>
-                    <p className="mt-4 text-center text-[10px]" style={{ fontFamily: "var(--font-lora)", color: "#B0AAA3" }}>New here? <button type="button" onClick={() => setIsSignupOpen(true)} className="font-semibold hover:underline" style={{ color: FOREST }}>Sign up</button></p>
+                    <p className="mt-4 text-center text-[10px]" style={{ fontFamily: "MV Boli, 'Times New Roman', serif", color: "#B0AAA3" }}>New here? <button type="button" onClick={() => setIsSignupOpen(true)} className="font-semibold hover:underline" style={{ color: FOREST }}>Sign up</button></p>
                   </div>
                 </AnimDiv>
               </div>
@@ -314,28 +311,28 @@ export default function HomePage() {
           {/* ========== FEATURES SECTION ========== */}
           <section id="features" className="mb-20 relative">
             <AnimDiv className="text-center mb-12 relative">
-              <img src={IMG("croissant")} alt="" className="absolute pointer-events-none hidden lg:block z-10" style={{ width: "250px", left: "100%", transform: "translateX(-50%)", top: "-50px", opacity: 1 }} />
+              <img src={IMG("croissant")} alt="" className="absolute pointer-events-none hidden lg:block z-10" style={{ width: "270px", right: "-297px", transform: "translateX(-50%)", top: "-50px", opacity: 1 }} />
               <p className="text-xl m-1" style={{ fontFamily: "var(--font-caveat)", color: ORANGE }}>Here&apos;s what we offer</p>
-              <h2 className="text-3xl sm:text-4xl font-bold" style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}>What You Can Do</h2>
+              <h2 className="text-3xl sm:text-4xl font-bold" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}>What You Can Do</h2>
             </AnimDiv>
             <div className="grid gap-6 grid-cols-5">
               {FEATURES.map((feat, i) => (
                 <AnimDiv key={feat.title} delay={i * 0.1}>
                   <div className="group rounded-2xl p-6 transition-all hover:shadow-xl hover:-translate-y-1 cursor-default h-full" style={{ backgroundColor: "rgba(255,255,255,0.6)", border: "1px solid rgba(200,139,66,0.12)" }}>
                     <img src={feat.img} alt={feat.title} className="w-[120px] h-[120px] object-contain mb-4 group-hover:scale-110 transition-transform mx-auto" />
-                    <h3 className="text-lg font-bold mb-2" style={{ fontFamily: "var(--font-cormorant)", color: DARK }}>{feat.title}</h3>
-                    <p className="text-sm leading-relaxed" style={{ fontFamily: "var(--font-lora)", color: "#8A8580" }}>{feat.desc}</p>
+                    <h3 className="text-lg font-bold mb-2" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: DARK }}>{feat.title}</h3>
+                    <p className="text-sm leading-relaxed" style={{ fontFamily: "MV Boli, 'Times New Roman', serif", color: "#8A8580" }}>{feat.desc}</p>
                   </div>
                 </AnimDiv>
               ))}
             </div>
             <AnimDiv delay={0.5} className="mt-8 relative">
-              <img src={IMG("small_salad_bowl")} alt="" className="absolute pointer-events-none hidden lg:block z-10" style={{ width: "290px", right: "-130px", top: "-30px", opacity: 1, transform: "scaleX(-1)" }} />
+              <img src={IMG("small_salad_bowl")} alt="" className="absolute pointer-events-none hidden lg:block z-10" style={{ width: "290px", right: "-180px", top: "-30px", opacity: 1, transform: "scaleX(-1)" }} />
               <div className="flex items-center gap-6 rounded-2xl p-6" style={{ backgroundColor: "rgba(255,255,255,0.6)", border: "1px solid rgba(200,139,66,0.12)" }}>
                 <img src={IMG("export_gricery_list")} alt="Export Grocery List" className="w-28 h-28 object-contain flex-shrink-0" />
                 <div>
-                  <h3 className="text-lg font-bold mb-2" style={{ fontFamily: "var(--font-cormorant)", color: DARK }}>Export Grocery Lists</h3>
-                  <p className="text-sm leading-relaxed" style={{ fontFamily: "var(--font-lora)", color: "#8A8580" }}>One-click export of optimized shopping lists sorted by platform for easy ordering.</p>
+                  <h3 className="text-lg font-bold mb-2" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: DARK }}>Export Grocery Lists</h3>
+                  <p className="text-sm leading-relaxed" style={{ fontFamily: "MV Boli, 'Times New Roman', serif", color: "#8A8580" }}>One-click export of optimized shopping lists sorted by platform for easy ordering.</p>
                 </div>
               </div>
             </AnimDiv>
@@ -346,13 +343,13 @@ export default function HomePage() {
             <img src={IMG("garlic")} alt="" className="absolute pointer-events-none hidden lg:block z-30 animate-sway" style={{ width: "350px", left: "-160px", top: "-60px", opacity: 1 }} />
             <img src={IMG("garlic")} alt="" className="absolute -right-4 bottom-8 w-20 lg:w-28 pointer-events-none animate-sway-reverse z-10 hidden sm:block" />
             <div className="rounded-3xl p-8 sm:p-10 text-center relative z-20" style={{ backgroundColor: FOREST }}>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2" style={{ fontFamily: "var(--font-cormorant)" }}>Why Users Love Fooder.AI</h2>
-              <p className="text-sm mb-8" style={{ fontFamily: "var(--font-lora)", color: "rgba(255,255,255,0.7)" }}>Trusted by thousands of happy meal planners</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2" style={{ fontFamily: "Harrington, 'Times New Roman', serif" }}>Why Users Love Fooder.AI</h2>
+              <p className="text-sm mb-8" style={{ fontFamily: "MV Boli, 'Times New Roman', serif", color: "rgba(255,255,255,0.7)" }}>Trusted by thousands of happy meal planners</p>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
                 {WHY_ITEMS.map((item) => (
                   <div key={item.label} className="flex flex-col items-center gap-2 p-4 rounded-2xl transition-all hover:scale-105" style={{ backgroundColor: "rgba(255,255,255,0.08)" }}>
                     <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: "rgba(255,255,255,0.12)" }}><item.icon className="h-5 w-5 text-white" /></div>
-                    <span className="text-xs font-medium text-white text-center" style={{ fontFamily: "var(--font-lora)" }}>{item.label}</span>
+                    <span className="text-xs font-medium text-white text-center" style={{ fontFamily: "MV Boli, 'Times New Roman', serif" }}>{item.label}</span>
                   </div>
                 ))}
               </div>
@@ -363,7 +360,7 @@ export default function HomePage() {
           <section id="how-it-works" className="mb-20">
             <AnimDiv className="text-center mb-12">
               <p className="text-xl mb-2" style={{ fontFamily: "var(--font-caveat)", color: ORANGE }}>Simple as 1-2-3-4</p>
-              <h2 className="text-3xl sm:text-4xl font-bold" style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}>How It Works</h2>
+              <h2 className="text-3xl sm:text-4xl font-bold" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}>How It Works</h2>
             </AnimDiv>
             <div className="relative">
               <div className="hidden lg:block absolute top-28 left-[12%] right-[12%] h-0.5" style={{ backgroundImage: `repeating-linear-gradient(90deg, ${GOLDEN}40 0, ${GOLDEN}40 8px, transparent 8px, transparent 16px)` }} />
@@ -373,8 +370,8 @@ export default function HomePage() {
                     <div className="relative text-center">
                       <img src={step.img} alt={step.title} className="w-[216px] h-[216px] object-contain mx-auto mb-4" />
                       {i < 3 && <div className="hidden lg:block absolute top-24 -right-4 text-2xl" style={{ color: GOLDEN }}>&rarr;</div>}
-                      <h3 className="text-base font-bold mb-2" style={{ fontFamily: "var(--font-cormorant)", color: DARK }}>{step.title}</h3>
-                      <p className="text-sm leading-relaxed" style={{ fontFamily: "var(--font-lora)", color: "#8A8580" }}>{step.desc}</p>
+                      <h3 className="text-base font-bold mb-2" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: DARK }}>{step.title}</h3>
+                      <p className="text-sm leading-relaxed" style={{ fontFamily: "MV Boli, 'Times New Roman', serif", color: "#8A8580" }}>{step.desc}</p>
                     </div>
                   </AnimDiv>
                 ))}
@@ -393,7 +390,7 @@ export default function HomePage() {
               {/* ── LEFT COLUMN ── */}
               <AnimDiv delay={0} className="flex flex-col items-start h-full">
                 <img src={IMG("robot_chef")} alt="Robot Chef" className="object-contain mb-6" style={{ width: "120px", height: "auto", maxHeight: "40%" }} />
-                <p className="text-sm leading-relaxed mb-8" style={{ fontFamily: "var(--font-lora)", color: "#5A5550", maxWidth: "320px", lineHeight: "1.9" }}>
+                <p className="text-sm leading-relaxed mb-8" style={{ fontFamily: "MV Boli, 'Times New Roman', serif", color: "#5A5550", maxWidth: "320px", lineHeight: "1.9" }}>
                   Fooder.AI was built to help students, busy professionals, families, and budget-conscious users simplify meal planning. We believe everyone deserves healthy, delicious meals without the stress of planning and price shopping.
                 </p>
 
@@ -403,7 +400,7 @@ export default function HomePage() {
               <AnimDiv delay={0.15} className="flex flex-col items-center justify-center h-full">
                 <div className="flex items-center gap-3 mb-2">
                   <span className="text-lg leading-none" style={{ color: FOREST }}>─</span>
-                  <h2 className="text-4xl font-bold tracking-tight" style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}>About Fooder.AI</h2>
+                  <h2 className="text-4xl font-bold tracking-tight" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}>About Fooder.AI</h2>
                   <span className="text-lg leading-none" style={{ color: FOREST }}>─</span>
                 </div>
                 <p className="text-lg mb-6" style={{ fontFamily: "var(--font-caveat)", color: ORANGE }}>Inspired by real kitchens.</p>
@@ -413,25 +410,25 @@ export default function HomePage() {
 
               {/* ── RIGHT COLUMN ── */}
               <AnimDiv delay={0.3} className="flex flex-col items-start h-full">
-                <h3 className="text-xl font-bold mb-3" style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}>Our Mission</h3>
-                <p className="text-sm leading-relaxed mb-6" style={{ fontFamily: "var(--font-lora)", color: "#5A5550", maxWidth: "320px", lineHeight: "1.9" }}>
+                <h3 className="text-xl font-bold mb-3" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}>Our Mission</h3>
+                <p className="text-sm leading-relaxed mb-6" style={{ fontFamily: "MV Boli, 'Times New Roman', serif", color: "#5A5550", maxWidth: "320px", lineHeight: "1.9" }}>
                   We believe everyone deserves healthy, delicious meals without the stress of planning and price shopping.
                 </p>
-                <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}>Powered By</h3>
+                <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}>Powered By</h3>
                 <div className="space-y-2 mb-6">
                   {["Artificial Intelligence", "Machine Learning", "Recommendation Systems", "Real-time Grocery Pricing", "Nutrition Analysis"].map((text) => (
                     <div key={text} className="flex items-center gap-2">
                       <CircleCheck className="h-3.5 w-3.5" style={{ color: FOREST }} />
-                      <span className="text-xs" style={{ fontFamily: "var(--font-lora)", color: "#5A5550" }}>{text}</span>
+                      <span className="text-xs" style={{ fontFamily: "MV Boli, 'Times New Roman', serif", color: "#5A5550" }}>{text}</span>
                     </div>
                   ))}
                 </div>
-                <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}>Built For</h3>
+                <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}>Built For</h3>
                 <div className="flex items-center justify-between w-full max-w-[320px] gap-2">
                   {[{ icon: Users, label: "Students" }, { icon: Zap, label: "Professionals" }, { icon: Heart, label: "Families" }, { icon: ChefHat, label: "Fitness" }, { icon: Users, label: "Home Cooks" }].map((item) => (
                     <div key={item.label} className="flex flex-col items-center gap-1.5">
                       <div className="w-7 h-7 rounded-full flex items-center justify-center" style={{ border: "1.5px solid rgba(39,77,47,0.25)" }}><item.icon className="h-3.5 w-3.5" style={{ color: FOREST }} /></div>
-                      <span className="text-[7px] leading-tight text-center" style={{ color: "#5A5550", fontFamily: "var(--font-lora)" }}>{item.label}</span>
+                      <span className="text-[7px] leading-tight text-center" style={{ color: "#5A5550", fontFamily: "MV Boli, 'Times New Roman', serif" }}>{item.label}</span>
                     </div>
                   ))}
                 </div>
@@ -445,8 +442,8 @@ export default function HomePage() {
             <div className="relative rounded-3xl p-8 sm:p-12 text-center overflow-hidden" style={{ background: `linear-gradient(135deg, ${FOREST} 0%, ${OLIVE} 100%)` }}>
               <div className="relative z-10">
                 <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3" style={{ fontFamily: "var(--font-caveat)", fontSize: "2.5rem" }}>Ready to eat smarter?</h2>
-                <p className="text-sm sm:text-base mb-8" style={{ fontFamily: "var(--font-lora)", color: "rgba(255,255,255,0.8)" }}>Healthy meals. Best prices. Zero stress.</p>
-                <button type="button" onClick={() => setIsSignupOpen(true)} className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-bold shadow-xl transition-all hover:scale-105 hover:shadow-2xl" style={{ backgroundColor: ORANGE, fontFamily: "var(--font-lora)" }}>Get Started Now <ArrowUpRight className="h-5 w-5" /></button>
+                <p className="text-sm sm:text-base mb-8" style={{ fontFamily: "MV Boli, 'Times New Roman', serif", color: "rgba(255,255,255,0.8)" }}>Healthy meals. Best prices. Zero stress.</p>
+                <button type="button" onClick={() => setIsSignupOpen(true)} className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-bold shadow-xl transition-all hover:scale-105 hover:shadow-2xl" style={{ backgroundColor: ORANGE, fontFamily: "MV Boli, 'Times New Roman', serif" }}>Get Started Now <ArrowUpRight className="h-5 w-5" /></button>
               </div>
               <div className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-10" style={{ background: "radial-gradient(circle, white, transparent)", transform: "translate(30%, -30%)" }} />
               <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full opacity-10" style={{ background: "radial-gradient(circle, white, transparent)", transform: "translate(-30%, 30%)" }} />
@@ -460,9 +457,9 @@ export default function HomePage() {
                 <div className="h-12 w-12">
                   <img src="/fooder_ai_png_assets_transparent_updated (2)/logo.png" alt="Fooder.AI" className="h-full w-full object-contain drop-shadow-lg" />
                 </div>
-                <span className="font-bold" style={{ fontFamily: "var(--font-cormorant)", color: FOREST }}>Fooder.AI</span>
+                <span className="font-bold" style={{ fontFamily: "Harrington, 'Times New Roman', serif", color: FOREST }}>Fooder.AI</span>
               </div>
-              <p className="text-xs" style={{ fontFamily: "var(--font-lora)", color: "#B0AAA3" }}>&copy; 2024 Fooder.AI. All rights reserved.</p>
+              <p className="text-xs" style={{ fontFamily: "MV Boli, 'Times New Roman', serif", color: "#B0AAA3" }}>&copy; 2024 Fooder.AI. All rights reserved.</p>
               <div className="flex items-center gap-3">
                 {["Twitter", "Instagram", "LinkedIn"].map((social) => (
                   <a key={social} href="#" className="w-8 h-8 rounded-full flex items-center justify-center transition-all hover:scale-110" style={{ backgroundColor: "rgba(39,77,47,0.08)" }}><span className="text-xs font-bold" style={{ color: FOREST }}>{social[0]}</span></a>
